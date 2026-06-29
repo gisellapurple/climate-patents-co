@@ -40,8 +40,7 @@ export function Footer() {
             Climate Patent Collective<span className="text-rust">.</span>
           </div>
           <p className="text-[14.5px] text-ink/65 mt-4 max-w-[40ch] leading-[1.6]">
-            The only patent agency built for climate tech. Flat fees, fast filings, robust IP
-            strategy.
+            The only patent agency built for climate tech. Flat fees, fast filings, robust IP strategies.
           </p>
           <a
             href="mailto:alex@climatepatents.co"
@@ -51,18 +50,18 @@ export function Footer() {
           </a>
         </div>
         <FooterCol title="Services">
-          <a href="/services/patent-strategy">Strategy</a>
-          <a href="/services/patent-drafting">Drafting</a>
-          <a href="/services/patent-prosecution">Prosecution</a>
+          <a href="/services">All services</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/industries">Industries</a>
         </FooterCol>
         <FooterCol title="Company">
           <a href="/about">About</a>
           <a href="/case-studies">Case studies</a>
-          <a href="/for-partners">Partners</a>
+          <a href="/partners">Partners</a>
         </FooterCol>
         <FooterCol title="Connect">
           <a href="/contact">Book a call</a>
-          <a href="/pricing">Pricing</a>
+          <a href="mailto:alex@climatepatents.co">Email us</a>
         </FooterCol>
       </div>
       <div className="border-t border-rule">

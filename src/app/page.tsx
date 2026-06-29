@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Nav, Footer } from "@/components/Nav";
 import { TopoCluster } from "@/components/TopoCluster";
@@ -40,27 +41,37 @@ const CASE_STUDIES = [
     bg: "bg-[#EDE8E6]",
   },
   {
-    name: "Coming soon",
-    slug: "case-studies",
-    sector: "Climate tech",
-    bg: "bg-[#EDEDEB]",
+    name: "BikeOn",
+    slug: "bikeon",
+    sector: "E-mobility & micromobility",
+    bg: "bg-[#E8EDE6]",
   },
 ];
 
 const SERVICES = [
   {
     title: "Patent Strategy & Portfolio Planning",
-    body: "We figure out what to file and what to skip. Your IP plan should match your roadmap and your fundraise, and sometimes that means telling you not to file at all.",
+    body: "Figure out what to file and what to skip, with an 18-month budget you can actually plan around.",
     href: "/services/patent-strategy",
   },
   {
-    title: "Patent Drafting",
-    body: "Provisionals, non-provisionals, PCT applications, continuations, and design applications. Written by people who actually understand your technology.",
-    href: "/services/patent-drafting",
+    title: "Provisional Patent Applications",
+    body: "A fast, affordable way to establish a priority date.",
+    href: "/services/provisional-patent-application",
+  },
+  {
+    title: "Non-Provisional Patent Applications",
+    body: "The full patent application. Drafted with prosecution in mind, on a timeline that matches your fundraise.",
+    href: "/services/non-provisional-patent-application",
+  },
+  {
+    title: "PCT (International) Patent Applications",
+    body: "File once, preserve your right to file in over 150 countries. We handle the strategy and the paperwork.",
+    href: "/services/pct-international-patent",
   },
   {
     title: "Patent Prosecution & Office Actions",
-    body: "USPTO office actions, examiner interviews, international reports, and appeals. We treat prosecution as strategy work, which is part of why our clients tend to see their allowance rates climb after switching to us.",
+    body: "USPTO responses, examiner interviews, international reports, and appeals.",
     href: "/services/patent-prosecution",
   },
 ];
@@ -278,7 +289,9 @@ export default function Home() {
                     href={`/case-studies/${cs.slug}`}
                     className="group block rounded-2xl border border-rule overflow-hidden hover:border-sage/40 transition-colors"
                   >
-                    <div className={`${cs.bg} h-56 w-full`} />
+                    <div className="relative h-56 w-full">
+                      <Image src={`/cs-${cs.slug}.png`} alt={cs.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                    </div>
                     <div className="px-6 py-5 flex items-center justify-between">
                       <div>
                         <p className="font-display font-medium text-[18px] group-hover:text-rust transition-colors">{cs.name}</p>
@@ -311,25 +324,16 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-6">
               {SERVICES.map((s, i) => (
                 <Reveal key={s.href} delay={i * 100}>
-                  <Link
-                    href={s.href}
-                    className="group flex flex-col h-full p-7 rounded-2xl border border-rule bg-bg hover:bg-bg-tint hover:border-sage/40 transition-colors"
-                  >
+                  <div className="flex flex-col h-full p-7 rounded-2xl border border-rule bg-bg">
                     <div className="flex items-center gap-3 mb-5">
                       <span className="block w-5 h-px bg-rust" />
                       <span className="text-[12px] text-ink/45">{String(i + 1).padStart(2, "0")}</span>
                     </div>
-                    <h3 className="font-display font-medium text-[20px] md:text-[22px] leading-[1.2] mb-4 group-hover:text-rust transition-colors">
+                    <h3 className="font-display font-medium text-[20px] md:text-[22px] leading-[1.2] mb-4">
                       {s.title}
                     </h3>
-                    <p className="text-[14.5px] text-ink/72 leading-[1.6] mb-8 flex-1">{s.body}</p>
-                    <span className="text-[13px] text-ink/55 inline-flex items-center gap-1.5 group-hover:text-rust transition-colors mt-auto">
-                      Learn more
-                      <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden>
-                        →
-                      </span>
-                    </span>
-                  </Link>
+                    <p className="text-[14.5px] text-ink/72 leading-[1.6] flex-1">{s.body}</p>
+                  </div>
                 </Reveal>
               ))}
             </div>
