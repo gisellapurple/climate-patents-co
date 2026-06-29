@@ -2,23 +2,29 @@ import Link from "next/link";
 
 export function Nav() {
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-[6px] bg-cream/80 border-b border-ink/10">
-      <div className="mx-auto max-w-[1320px] px-6 md:px-12 h-16 flex items-center justify-between">
-        <Link href="/" className="font-display text-[22px] leading-none tracking-tight">
-          Climate Patent Collective<span className="text-orange">.</span>
+    <header className="sticky top-0 z-40 backdrop-blur-[6px] bg-bg/85 border-b border-rule">
+      <div className="mx-auto max-w-[1280px] px-6 md:px-10 h-16 flex items-center justify-between">
+        <Link
+          href="/"
+          className="font-display font-medium text-[16px] leading-none tracking-[-0.012em] hover:text-rust transition-colors"
+        >
+          Climate Patent Collective<span className="text-rust">.</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-9 text-[13px]">
-          <Link href="/services" className="hover:text-orange transition-colors">Services</Link>
-          <Link href="/industries" className="hover:text-orange transition-colors">Industries</Link>
-          <Link href="/case-studies" className="hover:text-orange transition-colors">Case studies</Link>
-          <Link href="/about" className="hover:text-orange transition-colors">About</Link>
-          <Link href="/pricing" className="hover:text-orange transition-colors">Pricing</Link>
+        <nav className="hidden md:flex items-center gap-8 text-[14.5px]">
+          <Link href="/services" className="hover:text-rust transition-colors">Services</Link>
+          <Link href="/industries" className="hover:text-rust transition-colors">Industries</Link>
+          <Link href="/case-studies" className="hover:text-rust transition-colors">Case studies</Link>
+          <Link href="/pricing" className="hover:text-rust transition-colors">Pricing</Link>
+          <Link href="/about" className="hover:text-rust transition-colors">About</Link>
         </nav>
         <Link
           href="/contact"
-          className="hidden md:inline-flex items-center gap-2 text-[13px] border-b border-ink/40 pb-0.5 hover:border-orange hover:text-orange transition-colors"
+          className="hidden md:inline-flex items-center gap-2 bg-ink text-bg px-5 py-2.5 rounded-md text-[13.5px] font-medium hover:bg-rust transition-colors group"
         >
-          Book consultation <span aria-hidden>→</span>
+          Book a call
+          <span className="inline-block transition-transform group-hover:translate-x-0.5" aria-hidden>
+            →
+          </span>
         </Link>
       </div>
     </header>
@@ -27,19 +33,19 @@ export function Nav() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-ink/15 mt-40">
-      <div className="mx-auto max-w-[1320px] px-6 md:px-12 py-20 grid gap-14 md:grid-cols-12">
+    <footer className="border-t border-rule mt-0 bg-bg">
+      <div className="mx-auto max-w-[1280px] px-6 md:px-10 py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
-          <div className="font-display text-3xl leading-tight">
-            Climate Patent <br /> Collective<span className="text-orange">.</span>
+          <div className="font-display font-medium text-2xl leading-tight">
+            Climate Patent Collective<span className="text-rust">.</span>
           </div>
-          <p className="text-[15px] text-ink/65 mt-6 max-w-[36ch]">
+          <p className="text-[14.5px] text-ink/65 mt-4 max-w-[40ch] leading-[1.6]">
             The only patent agency built for climate tech. Flat fees, fast filings, robust IP
             strategy.
           </p>
           <a
             href="mailto:alex@climatepatents.co"
-            className="text-[15px] text-ink/75 hover:text-orange mt-8 inline-block border-b border-ink/30 hover:border-orange pb-0.5"
+            className="text-[14.5px] text-ink mt-6 inline-block sage-underline pb-0.5"
           >
             alex@climatepatents.co
           </a>
@@ -54,15 +60,15 @@ export function Footer() {
           <a href="/case-studies">Case studies</a>
           <a href="/for-partners">Partners</a>
         </FooterCol>
-        <FooterCol title="Get in touch">
+        <FooterCol title="Connect">
           <a href="/contact">Book a call</a>
           <a href="/pricing">Pricing</a>
         </FooterCol>
       </div>
-      <div className="border-t border-ink/10">
-        <div className="mx-auto max-w-[1320px] px-6 md:px-12 py-6 flex items-center justify-between text-[11px] text-ink/55 font-mono tracking-wider">
+      <div className="border-t border-rule">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-10 py-5 flex items-center justify-between text-[12px] text-ink/55">
           <span>© {new Date().getFullYear()} Climate Patent Collective</span>
-          <span>climatepatents.co</span>
+          <span className="italic text-sage">climatepatents.co</span>
         </div>
       </div>
     </footer>
@@ -72,8 +78,8 @@ export function Footer() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="md:col-span-2">
-      <div className="font-mono text-[11px] tracking-[0.14em] text-ink/55 mb-5">{title}</div>
-      <div className="flex flex-col gap-2.5 text-[15px] [&_a:hover]:text-orange [&_a]:transition-colors">
+      <div className="text-[14px] font-medium italic text-sage mb-4">{title}</div>
+      <div className="flex flex-col gap-2.5 text-[14px] [&_a:hover]:text-rust [&_a]:transition-colors">
         {children}
       </div>
     </div>

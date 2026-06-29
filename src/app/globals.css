@@ -1,54 +1,99 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #FAF6EE;
-  --ink: #1A1A1A;
-  --orange: #B85A2B;
-  --sage: #5A6F50;
+  --bg: #FBFAF7;
+  --bg-alt: #FFFFFF;
+  --bg-tint: #F1F4EB;
+  --ink: #0F0F0F;
+  --rust: #B85A2B;
+  --rust-soft: #D17A4D;
+  --sage: #5A8054;
+  --sage-soft: #7BA075;
+  --rule: rgba(15, 15, 15, 0.10);
+  --rule-strong: rgba(15, 15, 15, 0.18);
 }
 
 @theme inline {
-  --color-cream: var(--cream);
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-bg-tint: var(--bg-tint);
   --color-ink: var(--ink);
-  --color-orange: var(--orange);
+  --color-rust: var(--rust);
+  --color-rust-soft: var(--rust-soft);
   --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
 }
 
 html, body {
-  background: var(--cream);
+  background: var(--bg);
   color: var(--ink);
 }
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .font-display {
-  font-family: var(--font-display), Georgia, serif;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.022em;
 }
 
-.font-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
+.section-label {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--sage);
+  letter-spacing: -0.005em;
+  display: inline-block;
+  margin-bottom: 18px;
 }
 
-.section-marker {
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  opacity: 0.55;
-  text-transform: lowercase;
+.sage-underline {
+  background-image: linear-gradient(var(--sage), var(--sage));
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: color 0.2s, background-image 0.2s;
+}
+.sage-underline:hover {
+  color: var(--rust);
+  background-image: linear-gradient(var(--rust), var(--rust));
+}
+
+.rust-mark::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--rust);
+  margin-right: 12px;
+  vertical-align: -2px;
+  border-radius: 1px;
+}
+
+.carousel-mask {
+  mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+}
+.carousel-track {
+  animation: cpc-scroll 38s linear infinite;
+}
+@keyframes cpc-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 28px)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .rotating-word > span:not(:first-child) { display: none; }
-  .rotating-word > span:first-child { opacity: 1 !important; position: static !important; }
-  .parallax { transform: none !important; }
+  .rotating-word > span:first-child { opacity: 1 !important; position: static !important; transform: none !important; }
+  .carousel-track { animation: none; }
+  .topo-contour { stroke-dashoffset: 0 !important; transition: none !important; }
 }

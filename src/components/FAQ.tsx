@@ -17,7 +17,7 @@ const ITEMS = [
   },
   {
     q: "How does your flat-fee system work?",
-    a: "We work on a flat-fee basis for every project that has a deliverable. That includes patent drafting (provisional and non-provisional), patent searches, office action responses, and PCT applications. Consultations, strategy sessions, filing coordination, drawing fees, and edits are all included.",
+    a: "We work on a flat-fee basis for every project that has a deliverable: drafting, searches, office action responses, and PCT applications. Consultations, strategy sessions, filing coordination, drawing fees, and edits are all included.",
   },
   {
     q: "How does the partner discount work?",
@@ -25,7 +25,7 @@ const ITEMS = [
   },
   {
     q: "What is the turnaround time for a patent application?",
-    a: "We typically complete provisional patent applications within about three weeks of your invention disclosure. For non-provisional applications, we recommend engaging us at least eight weeks before your target filing date.",
+    a: "We typically complete provisional patent applications within about three weeks of your invention disclosure. For non-provisional applications, engage us at least eight weeks before your target filing date.",
   },
   {
     q: "What if I have existing patent counsel and want to switch?",
@@ -40,27 +40,27 @@ const ITEMS = [
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <div className="border-t border-ink/20">
+    <div className="border-t border-rule">
       {ITEMS.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div key={i} className="border-b border-ink/20">
+          <div key={i} className="border-b border-rule">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="w-full flex items-start justify-between gap-10 py-7 text-left group"
+              className="w-full flex items-start justify-between gap-10 py-6 text-left group transition-colors hover:bg-bg-tint/40 px-2 -mx-2"
               aria-expanded={isOpen}
             >
-              <span className="font-display text-[22px] md:text-[28px] leading-[1.2]">
+              <span className="font-display font-medium text-[18px] md:text-[20px] leading-[1.3]">
                 {item.q}
               </span>
               <span
-                className={`mt-3 inline-block w-3 h-3 relative shrink-0 transition-transform duration-300 ${
+                className={`mt-2 inline-block w-3 h-3 relative shrink-0 transition-transform duration-300 ${
                   isOpen ? "rotate-45" : ""
                 }`}
                 aria-hidden
               >
-                <span className="absolute top-1/2 left-0 right-0 h-px bg-orange" />
-                <span className="absolute left-1/2 top-0 bottom-0 w-px bg-orange" />
+                <span className="absolute top-1/2 left-0 right-0 h-px bg-rust" />
+                <span className="absolute left-1/2 top-0 bottom-0 w-px bg-rust" />
               </span>
             </button>
             <div
@@ -68,7 +68,9 @@ export function FAQ() {
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="pb-8 pr-12 text-[16px] text-ink/75 max-w-[68ch]">{item.a}</p>
+                <p className="pb-7 pr-14 text-[14.5px] text-ink/72 max-w-[68ch] leading-[1.65]">
+                  {item.a}
+                </p>
               </div>
             </div>
           </div>

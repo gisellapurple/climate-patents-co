@@ -1,31 +1,26 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const display = Instrument_Serif({
+const display = Inter_Tight({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 const sans = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "The Climate Patent Collective — Patents Built for Climate Founders",
+  title: "Climate Patent Collective — The only patent agency built for climate tech",
   description:
-    "The only patent agency built for climate tech. Flat fees, fast filings, and a real IP strategy. We've worked with climate founders since 2022.",
+    "The only patent agency built for climate tech, with flat fees, fast filings, and robust IP strategies. Launched in 2023.",
 };
 
 export default function RootLayout({
@@ -34,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-cream text-ink">{children}</body>
+      <body className="min-h-full flex flex-col bg-bg text-ink">{children}</body>
     </html>
   );
 }
