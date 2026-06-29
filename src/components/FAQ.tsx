@@ -40,32 +40,35 @@ const ITEMS = [
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <div className="border-t border-ink/15">
+    <div className="border-t border-ink/20">
       {ITEMS.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div key={i} className="border-b border-ink/15">
+          <div key={i} className="border-b border-ink/20">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="w-full flex items-start justify-between gap-8 py-6 text-left group"
+              className="w-full flex items-start justify-between gap-10 py-7 text-left group"
               aria-expanded={isOpen}
             >
-              <span className="font-display text-xl md:text-2xl leading-snug">{item.q}</span>
+              <span className="font-display text-[22px] md:text-[28px] leading-[1.2]">
+                {item.q}
+              </span>
               <span
-                className={`mt-2 text-orange text-xl transition-transform ${
+                className={`mt-3 inline-block w-3 h-3 relative shrink-0 transition-transform duration-300 ${
                   isOpen ? "rotate-45" : ""
                 }`}
                 aria-hidden
               >
-                +
+                <span className="absolute top-1/2 left-0 right-0 h-px bg-orange" />
+                <span className="absolute left-1/2 top-0 bottom-0 w-px bg-orange" />
               </span>
             </button>
             <div
-              className="grid transition-all duration-300 ease-out"
+              className="grid transition-all duration-500 ease-out"
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="pb-6 pr-12 text-ink/75 max-w-[68ch]">{item.a}</p>
+                <p className="pb-8 pr-12 text-[16px] text-ink/75 max-w-[68ch]">{item.a}</p>
               </div>
             </div>
           </div>

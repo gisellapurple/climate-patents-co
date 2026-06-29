@@ -3,19 +3,21 @@
 import { useEffect, useState } from "react";
 
 const WORDS = [
-  "climate founders",
-  "battery teams",
-  "carbon companies",
-  "hydrogen pioneers",
-  "DAC engineers",
-  "ocean tech teams",
+  "climate tech",
+  "batteries",
+  "carbon removal",
+  "hydrogen",
+  "DAC",
+  "ocean tech",
+  "solar",
+  "ag-tech",
 ];
 
 export function RotatingWord() {
   const [i, setI] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setI((n) => (n + 1) % WORDS.length), 3000);
+    const id = setInterval(() => setI((n) => (n + 1) % WORDS.length), 2600);
     return () => clearInterval(id);
   }, []);
 
@@ -27,8 +29,11 @@ export function RotatingWord() {
       {WORDS.map((w, idx) => (
         <span
           key={w}
-          className="absolute inset-0 italic text-orange transition-opacity duration-700 ease-in-out whitespace-nowrap"
-          style={{ opacity: idx === i ? 1 : 0 }}
+          className="absolute inset-0 italic text-orange whitespace-nowrap transition-[opacity,transform] duration-700 ease-out"
+          style={{
+            opacity: idx === i ? 1 : 0,
+            transform: idx === i ? "translateY(0)" : "translateY(0.1em)",
+          }}
         >
           {w}
         </span>
