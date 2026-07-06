@@ -5,30 +5,34 @@
 ───────────────────────────────────────────── */
 :root {
   /* Base surfaces */
-  --bg:        #f8f7f2;
+  --bg:        #F5F3EC;
   --bg-alt:    #ffffff;
-  --bg-tint:   #f0efe9;
+  --bg-tint:   #ede9e0;
   --surface:   #ffffff;
-  --soft-gray: #ecebe5;
-  --charcoal:  #1a1a17;
+  --soft-gray: #E7E3DA;
+  --charcoal:  #171717;
 
   /* Ink */
-  --ink:       #111111;
+  --ink:       #171717;
   --muted-ink: #5f5f5a;
-  --line:      #d9d8cf;
-  --rule:      rgba(17, 17, 17, 0.09);
-  --rule-strong: rgba(17, 17, 17, 0.18);
+  --line:      #d5d1c8;
+  --rule:      rgba(23, 23, 23, 0.09);
+  --rule-strong: rgba(23, 23, 23, 0.18);
 
-  /* Accents */
-  --lime:      #d8ff4f;
-  --acid-green:#c9f12f;
-  --green:     #27c878;
-  --teal:      #19b6b6;
-  --sky-blue:  #69c8ff;
-  --deep-blue: #2478ff;
-  --orange:    #f15a2b;
-  --rust:      #b84f25;
-  --rust-soft: #d17a4d;
+  /* Accents — botanical / mineral palette */
+  --lime:        #B7D36B;  /* citron */
+  --citron:      #B7D36B;
+  --moss:        #7FAE6A;
+  --forest:      #2F6154;
+  --acid-green:  #7FAE6A;  /* mapped to moss */
+  --green:       #27c878;
+  --teal:        #2F6154;  /* deep forest-teal */
+  --sky-blue:    #AFCFE3;  /* powder blue */
+  --powder-blue: #AFCFE3;
+  --deep-blue:   #2478ff;
+  --orange:      #f15a2b;
+  --rust:        #C96A43;
+  --rust-soft:   #d98b6a;
 
   /* Legacy compat */
   --sage:      #5A8054;
@@ -47,17 +51,21 @@
   --color-line:       var(--line);
   --color-rule:       var(--rule);
   --color-rule-strong:var(--rule-strong);
-  --color-lime:       var(--lime);
-  --color-acid-green: var(--acid-green);
-  --color-green:      var(--green);
-  --color-teal:       var(--teal);
-  --color-sky-blue:   var(--sky-blue);
-  --color-deep-blue:  var(--deep-blue);
-  --color-orange:     var(--orange);
-  --color-rust:       var(--rust);
-  --color-rust-soft:  var(--rust-soft);
-  --color-sage:       var(--sage);
-  --color-sage-soft:  var(--sage-soft);
+  --color-lime:        var(--lime);
+  --color-citron:      var(--citron);
+  --color-moss:        var(--moss);
+  --color-forest:      var(--forest);
+  --color-acid-green:  var(--acid-green);
+  --color-green:       var(--green);
+  --color-teal:        var(--teal);
+  --color-sky-blue:    var(--sky-blue);
+  --color-powder-blue: var(--powder-blue);
+  --color-deep-blue:   var(--deep-blue);
+  --color-orange:      var(--orange);
+  --color-rust:        var(--rust);
+  --color-rust-soft:   var(--rust-soft);
+  --color-sage:        var(--sage);
+  --color-sage-soft:   var(--sage-soft);
   --font-display:     var(--font-display);
   --font-sans:        var(--font-sans);
 }
@@ -202,35 +210,105 @@ body {
 }
 
 /* ─────────────────────────────────────────────
-   INDUSTRY TILES
+   INDUSTRY TILES — editorial matrix
 ───────────────────────────────────────────── */
-.industry-tile {
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 280px;
+  gap: 12px;
+}
+
+.itile {
   position: relative;
+  border-radius: 26px;
   overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
 }
 
-.industry-tile .tile-wash {
+.itile:hover {
+  border-color: rgba(23,23,23,0.2);
+  box-shadow: 0 6px 28px rgba(23,23,23,0.06);
+}
+
+/* Featured: taller — occupies 2 row tracks */
+.itile-featured {
+  grid-row: span 2;
+}
+
+/* Wide: full-width panoramic strip */
+.itile-wide {
+  grid-column: 1 / -1;
+}
+
+/* Image wrapper fills the flex space above the label */
+.itile-img-wrap {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: var(--bg); /* warm cream matches tile bg — seamless for object-contain */
+}
+
+/* Image scale on hover */
+.itile-img {
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.itile:hover .itile-img {
+  transform: scale(1.03);
+}
+
+/* Moss wash — very subtle, multiply blend */
+.itile-wash {
   position: absolute;
   inset: 0;
-  background: var(--lime);
-  opacity: 0;
+  background: rgba(127, 174, 106, 0.12);
   mix-blend-mode: multiply;
-  transition: opacity 0.35s;
+  opacity: 0;
+  transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
-.industry-tile:hover .tile-wash {
-  opacity: 0.12;
-}
-
-.industry-tile-dark .tile-wash {
-  background: rgba(255,255,255,0.06);
-  mix-blend-mode: screen;
-}
-
-.industry-tile-dark:hover .tile-wash {
+.itile:hover .itile-wash {
   opacity: 1;
+}
+
+/* Label bar */
+.itile-label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.itile-name {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* Mobile: stack all tiles in a single column */
+@media (max-width: 767px) {
+  .industries-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  .itile-featured { grid-row: span 1; }
+  .itile-wide     { grid-column: span 1; }
+  .itile-img-wrap { aspect-ratio: 4 / 3; flex: unset; }
 }
 
 /* ─────────────────────────────────────────────
@@ -277,11 +355,27 @@ body {
 }
 
 /* ─────────────────────────────────────────────
-   PILLAR CARDS
+   PILLAR CARDS (2×2 editorial grid)
 ───────────────────────────────────────────── */
 .pillar-card {
-  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
   overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+  border-color: rgba(23, 23, 23, 0.18);
+  box-shadow: 0 6px 28px rgba(23, 23, 23, 0.06);
+}
+
+.pillar-card-img {
+  height: 280px;
+}
+
+@media (max-width: 767px) {
+  .pillar-card-img { height: 200px; }
 }
 
 /* ─────────────────────────────────────────────

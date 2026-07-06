@@ -6,21 +6,25 @@ import { LogoCarousel } from "@/components/LogoCarousel";
 import { Reveal } from "@/components/Reveal";
 import { FAQ } from "@/components/FAQ";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { IndustryTile } from "@/components/IndustryTile";
 
 /* ─── Data ──────────────────────────────────────────────────────── */
 
-const INDUSTRIES: { name: string; span: string; bg: string; text: string; dots: string }[] = [
-  { name: "Energy Storage & Batteries",           span: "md:col-span-2", bg: "bg-lime",      text: "text-ink",   dots: "tech-dots-lime" },
-  { name: "Solar & Renewable Energy",             span: "md:col-span-1", bg: "bg-charcoal",  text: "text-white", dots: "tech-dots-dark" },
-  { name: "Carbon Capture, Removal & Utilization",span: "md:col-span-1", bg: "bg-surface",   text: "text-ink",   dots: "tech-dots-light" },
-  { name: "Hydrogen & Alternative Fuels",          span: "md:col-span-2", bg: "bg-charcoal",  text: "text-white", dots: "tech-dots-dark" },
-  { name: "Sustainable Transportation & EVs",     span: "md:col-span-1", bg: "bg-soft-gray", text: "text-ink",   dots: "tech-dots-light" },
-  { name: "Sustainable Aviation",                 span: "md:col-span-1", bg: "bg-surface",   text: "text-ink",   dots: "tech-dots-light" },
-  { name: "Green Buildings & HVAC",               span: "md:col-span-1", bg: "bg-lime",      text: "text-ink",   dots: "tech-dots-lime" },
-  { name: "Sustainable Agriculture & Ag-Tech",    span: "md:col-span-2", bg: "bg-charcoal",  text: "text-white", dots: "tech-dots-dark" },
-  { name: "Circular Economy & Recycling",         span: "md:col-span-1", bg: "bg-soft-gray", text: "text-ink",   dots: "tech-dots-light" },
-  { name: "Geothermal",                           span: "md:col-span-1", bg: "bg-surface",   text: "text-ink",   dots: "tech-dots-light" },
-  { name: "Climate AI & Software",                span: "md:col-span-2", bg: "bg-lime",      text: "text-ink",   dots: "tech-dots-lime" },
+// Order matters — CSS grid auto-places these to create the editorial layout:
+// Energy (featured/tall) anchors col1 rows 1-2; Carbon anchors col1 rows 3-4;
+// Climate AI (wide) becomes a full-width strip at the bottom.
+const INDUSTRIES: { name: string; img: string; featured?: boolean; wide?: boolean }[] = [
+  { name: "Energy Storage & Batteries",            img: "/ind-energy.png",    featured: true  },
+  { name: "Solar & Renewable Energy",              img: "/ind-solar.png"                      },
+  { name: "Hydrogen & Alternative Fuels",          img: "/ind-hydrogen.png"                   },
+  { name: "Sustainable Transportation & EVs",      img: "/ind-transport.png"                  },
+  { name: "Sustainable Aviation",                  img: "/ind-aviation.png"                   },
+  { name: "Carbon Capture, Removal & Utilization", img: "/ind-carbon.png"                     },
+  { name: "Green Buildings & HVAC",                img: "/ind-buildings.png"                  },
+  { name: "Sustainable Agriculture & Ag-Tech",     img: "/ind-agtech.png"                     },
+  { name: "Circular Economy & Recycling",          img: "/ind-circular.png"                   },
+  { name: "Geothermal",                            img: "/ind-geothermal.png"                 },
+  { name: "Climate AI & Software",                 img: "/ind-climateai.png"                  },
 ];
 
 const CASE_STUDIES = [
@@ -86,35 +90,31 @@ const SERVICES = [
 const PILLARS = [
   {
     title: "Strategy first",
-    body: "Your patent plan should match your fundraising plan and your product roadmap. Most firms start with what's technically patentable. We start with what you actually need to protect, and what your next investor is going to ask about it.",
-    bg: "bg-surface border border-rule",
-    text: "text-ink",
-    numColor: "text-ink/20",
-    accentColor: "bg-rust",
+    body: "Your patent strategy should communicate your mission and what makes you different. Most firms apply strategy one patent at a time; we take a portfolio-level approach to make sure every patent application we file tells a coherent story about your technology and your business.",
+    img: "/pillar-strategy.png",
+    accentBg: "bg-citron",
+    accentBar: "#B7D36B",
   },
   {
     title: "Flat fees, transparent budgets",
-    body: "Every project is a flat fee. In your first strategy session we map out your full portfolio budget for the next 18 months, so there are no billing surprises in the middle of a fundraise.",
-    bg: "bg-lime",
-    text: "text-ink",
-    numColor: "text-ink/25",
-    accentColor: "bg-ink",
+    body: "Every project is flat-fee. In your first strategy session, we map out your full portfolio budget for the next 18 months, so there are no billing surprises.",
+    img: "/pillar-fees.png",
+    accentBg: "bg-forest",
+    accentBar: "#2F6154",
   },
   {
     title: "Fast turnarounds",
-    body: "We can have a provisional drafted and filed in three weeks. Non-provisionals run on a schedule that matches your fundraise. If you need something on the books before a board meeting, tell us and we'll work backward from there.",
-    bg: "bg-charcoal",
-    text: "text-white",
-    numColor: "text-white/20",
-    accentColor: "bg-lime",
+    body: "We turn around fully drafted patent applications within three weeks on average. We plan far ahead of major deadlines and milestones to ensure there are no emergencies or rushed jobs.",
+    img: "/pillar-fast.png",
+    accentBg: "bg-rust",
+    accentBar: "#C96A43",
   },
   {
     title: "Climate fluency",
-    body: "We've drafted patents on solid-state batteries, direct air capture, perovskite solar, AD biogas, electrolyzers, EV charging protocols, precision ag systems, and a lot more. You won't spend your first call explaining what your technology does.",
-    bg: "bg-soft-gray",
-    text: "text-ink",
-    numColor: "text-ink/20",
-    accentColor: "bg-rust",
+    body: "We've drafted patents on ocean-enhanced weathering, direct air capture, heat pumps, short-haul transport electric drones, EV charging protocols, precision ag systems, and a lot more. You won't spend your first call explaining why your technology is important.",
+    img: "/pillar-climate.png",
+    accentBg: "bg-moss",
+    accentBar: "#7FAE6A",
   },
 ];
 
@@ -136,16 +136,6 @@ export default function Home() {
             style={{ minHeight: "90vh", paddingTop: "7rem", paddingBottom: "6rem" }}
           >
             <div className="max-w-[52%] md:max-w-[46%]">
-              {/* Label */}
-              <Reveal>
-                <div className="flex items-center gap-3 mb-10">
-                  <span className="block w-6 h-px bg-rust" />
-                  <span className="text-[11.5px] text-ink/45 tracking-[0.1em] uppercase font-medium">
-                    Climate Patent Collective
-                  </span>
-                </div>
-              </Reveal>
-
               {/* Headline */}
               <Reveal>
                 <h1 className="hero-title">
@@ -157,8 +147,8 @@ export default function Home() {
               <Reveal delay={220}>
                 <p className="large-body mt-8 text-ink/65 max-w-[40ch] leading-[1.5]">
                   Flat fees, fast filings, and real IP strategy. We&apos;ve prosecuted{" "}
-                  <span className="text-rust font-medium">100+</span> patents for{" "}
-                  <span className="text-rust font-medium">40+</span> climate startups since 2023.
+                  <span className="text-rust font-bold">100+</span> patents for{" "}
+                  <span className="text-rust font-bold">40+</span> climate startups since 2023.
                 </p>
               </Reveal>
 
@@ -213,15 +203,15 @@ export default function Home() {
                   style={{ borderLeft: "2px solid var(--lime)" }}
                 >
                   <p>
-                    Most patent firms bill by the hour. They treat a resource-strapped climate
-                    startup the same way they treat Apple, and you can feel it in your invoice. By
-                    the time you&apos;ve spent $50K on a portfolio you don&apos;t fully understand, you&apos;ve also missed two
-                    product pivots and a fundraise.
+                    Most patent firms bill by the hour. They treat climate startups the same way
+                    they&apos;d treat any other corporate client, and you can feel it when you get
+                    the bill. At the end of the month, you get an expensive and unpredictable
+                    invoice that punishes you every time you ask for help.
                   </p>
                   <p>
-                    We started the Climate Patent Collective in 2022 because the founders working
-                    on climate shouldn&apos;t have to choose between filing their patents properly
-                    and being able to make payroll.
+                    We started the Climate Patent Collective in 2023 because founders working on
+                    climate should have access to strategic, approachable, and mission-aligned
+                    patent representation.
                   </p>
                 </div>
               </Reveal>
@@ -237,138 +227,43 @@ export default function Home() {
                 Why climate teams choose us.
               </h2>
             </Reveal>
+            {/* 2×2 editorial grid */}
             <div className="grid md:grid-cols-2 gap-4">
-              {PILLARS.map((p, i) => (
-                <Reveal key={p.title} delay={i * 80}>
-                  <div className={`pillar-card ${p.bg} ${p.text} rounded-2xl p-9 md:p-11 h-full flex flex-col`}>
-                    {/* Number + accent mark */}
-                    <div className="flex items-center gap-3 mb-8">
-                      <span className={`block w-5 h-0.5 ${p.accentColor} rounded-full`} />
-                      <span className={`text-[11px] tracking-[0.1em] uppercase font-medium ${p.numColor}`}>
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                    {/* Oversized number watermark */}
-                    <div className={`font-display text-[5rem] leading-none tracking-[-0.06em] mb-4 ${p.numColor}`} aria-hidden>
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <h3 className={`font-display font-medium text-[24px] md:text-[26px] leading-[1.15] mb-4`}>
-                      {p.title}
-                    </h3>
-                    <p className={`text-[14.5px] md:text-[15px] leading-[1.7] flex-1 opacity-75`}>
-                      {p.body}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════════════ INDUSTRIES ══════════════════ */}
-        <section className="bg-bg border-t border-rule">
-          <div className={`${PAGE} py-24 md:py-36`}>
-            <Reveal>
-              <h2 className="section-title max-w-[22ch] mb-12">
-                Patents for the technologies that matter.
-              </h2>
-            </Reveal>
-
-            {/* Tile grid */}
-            <div className="grid md:grid-cols-3 gap-3">
-              {INDUSTRIES.map((ind, i) => (
-                <Reveal key={ind.name} delay={i * 35}>
-                  <div className={`industry-tile ${ind.bg} ${ind.span} ${ind.dots} rounded-xl p-7 md:p-9 min-h-[160px] md:min-h-[180px] flex flex-col justify-between relative`}>
-                    <div className="tile-wash" />
-                    {/* Index */}
-                    <span className={`block font-display text-[11px] tracking-[0.1em] uppercase ${ind.text} opacity-30 mb-6`}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {/* Name */}
-                    <span className={`font-display font-medium text-[18px] md:text-[20px] leading-[1.2] tracking-[-0.02em] ${ind.text}`}>
-                      {ind.name}
-                    </span>
-                    {/* Corner accent */}
-                    <svg
-                      className="absolute top-5 right-5 opacity-25"
-                      width="20" height="20" viewBox="0 0 20 20" fill="none"
+              {PILLARS.map((p) => (
+                <div key={p.title} className="pillar-card">
+                  <div className="h-[3px] rounded-t-2xl" style={{ background: p.accentBar }} />
+                  <div className="relative w-full overflow-hidden pillar-card-img">
+                    <Image
+                      src={p.img}
+                      alt=""
+                      width={1200}
+                      height={700}
+                      className="w-full h-full object-cover"
                       aria-hidden
-                    >
-                      <circle cx="10" cy="10" r="8" stroke={ind.text === "text-white" ? "#fff" : "#111"} strokeWidth="0.8" />
-                      <circle cx="10" cy="10" r="3" stroke={ind.text === "text-white" ? "#fff" : "#111"} strokeWidth="0.8" />
-                    </svg>
+                    />
                   </div>
-                </Reveal>
+                  <div className="h-px mx-6" style={{ background: "var(--rule)" }} />
+                  <div className="px-6 py-7">
+                    <h3 className="font-display font-medium text-[20px] leading-[1.2] text-ink mb-3">{p.title}</h3>
+                    <p className="text-[14px] leading-[1.7] text-ink/65">{p.body}</p>
+                  </div>
+                </div>
               ))}
             </div>
-
             <div className="mt-10">
-              <Link href="/industries" className="text-[15px] inline-flex items-center gap-1.5 sage-underline pb-0.5">
-                See all industries <span aria-hidden>→</span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════════════ CASE STUDIES ══════════════════ */}
-        <section className="bg-bg-alt border-t border-rule">
-          <div className={`${PAGE} py-24 md:py-36`}>
-            <Reveal>
-              <h2 className="section-title max-w-[20ch] mb-12">
-                Hear from real climate tech founders.
-              </h2>
-            </Reveal>
-
-            <div className="grid md:grid-cols-3 gap-4">
-              {CASE_STUDIES.map((cs, i) => (
-                <Reveal key={cs.slug} delay={i * 80}>
-                  <Link
-                    href={`/case-studies/${cs.slug}`}
-                    className={`dossier-card group block rounded-2xl border border-rule overflow-hidden hover:border-ink/25 transition-colors ${
-                      cs.featured ? "md:col-span-2" : ""
-                    }`}
-                  >
-                    {/* Image panel */}
-                    <div className={`dossier-img-wrap w-full ${cs.featured ? "h-72 md:h-80" : "h-52"}`}>
-                      <Image
-                        src={`/cs-${cs.slug}.png`}
-                        alt={cs.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
-
-                    {/* Metadata footer */}
-                    <div className="px-6 py-5 bg-bg flex items-center justify-between gap-4">
-                      <div>
-                        {/* Sector tag */}
-                        <span className="inline-block text-[10.5px] tracking-[0.08em] uppercase text-ink/40 mb-1.5">
-                          {cs.sector}
-                        </span>
-                        <p className="font-display font-medium text-[18px] leading-tight group-hover:text-rust transition-colors">
-                          {cs.name}
-                        </p>
-                      </div>
-                      <span className="shrink-0 w-8 h-8 rounded-full border border-rule flex items-center justify-center text-[12px] text-ink/40 group-hover:bg-ink group-hover:text-bg group-hover:border-ink transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-
-            <div className="mt-10">
-              <Link href="/case-studies" className="text-[15px] inline-flex items-center gap-1.5 sage-underline pb-0.5">
-                See all case studies <span aria-hidden>→</span>
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-2.5 bg-ink text-bg pl-5 pr-4 py-3 rounded-md text-[13.5px] font-medium hover:bg-lime hover:text-ink transition-colors"
+              >
+                About us
+                <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden>→</span>
               </Link>
             </div>
           </div>
         </section>
 
         {/* ══════════════════ SERVICES ══════════════════ */}
-        <section className="bg-bg border-t border-rule">
+        <section className="bg-bg-alt border-t border-rule">
           <div className={`${PAGE} py-24 md:py-36`}>
             <Reveal>
               <h2 className="section-title max-w-[22ch] mb-12">
@@ -381,36 +276,21 @@ export default function Home() {
                 <Reveal key={s.href} delay={i * 70} className={s.span}>
                   <Link
                     href={s.href}
-                    className={`service-panel group block ${s.bg} ${s.text} ${s.dots} rounded-2xl p-8 md:p-10 h-full min-h-[220px] flex flex-col justify-between relative`}
+                    className={`service-panel group block ${s.bg} ${s.text} ${s.dots} rounded-2xl p-8 md:p-10 h-full min-h-[200px] flex flex-col gap-4 relative`}
                   >
-                    {/* Number + accent line */}
-                    <div className="flex items-center gap-3 mb-auto">
+                    <div className="flex items-center gap-3">
                       <span className={`block w-5 h-px ${s.text === "text-white" ? "bg-white/30" : "bg-ink/20"} rounded`} />
                       <span className={`text-[11px] tracking-[0.1em] uppercase font-medium ${s.text === "text-white" ? "text-white/35" : "text-ink/30"}`}>
                         {s.num}
                       </span>
                     </div>
-
-                    {/* Large decorative number */}
-                    <div
-                      className={`font-display text-[4rem] md:text-[5rem] leading-none tracking-[-0.06em] mb-3 mt-4 ${s.text === "text-white" ? "text-white/10" : "text-ink/08"}`}
-                      aria-hidden
-                    >
-                      {s.num}
-                    </div>
-
                     <div>
-                      <h3 className={`font-display font-medium text-[20px] md:text-[22px] leading-[1.2] mb-3`}>
+                      <h3 className="font-display font-medium text-[20px] md:text-[22px] leading-[1.2] mb-3">
                         {s.title}
                       </h3>
                       <p className={`text-[14px] md:text-[14.5px] leading-[1.65] ${s.text === "text-white" ? "text-white/65" : "text-ink/65"}`}>
                         {s.body}
                       </p>
-                    </div>
-
-                    {/* Arrow */}
-                    <div className={`mt-6 text-[13px] inline-flex items-center gap-1.5 ${s.text === "text-white" ? "text-white/45" : "text-ink/40"} group-hover:gap-2.5 transition-all`}>
-                      Explore <span aria-hidden>→</span>
                     </div>
                   </Link>
                 </Reveal>
@@ -428,7 +308,6 @@ export default function Home() {
         {/* ══════════════════ TESTIMONIALS ══════════════════ */}
         <section className="bg-charcoal border-t border-rule">
           <div className={`${PAGE} py-24 md:py-36`}>
-            {/* Section label */}
             <Reveal>
               <div className="flex items-center gap-3 mb-12">
                 <span className="block w-6 h-px bg-lime" />
@@ -440,6 +319,46 @@ export default function Home() {
             <Reveal delay={120}>
               <TestimonialCarousel />
             </Reveal>
+            <Reveal delay={240}>
+              <div className="mt-12">
+                <Link
+                  href="/case-studies"
+                  className="group inline-flex items-center gap-2.5 bg-white/10 text-white pl-5 pr-4 py-3 rounded-md text-[13.5px] font-medium hover:bg-lime hover:text-ink transition-colors"
+                >
+                  See case studies
+                  <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ══════════════════ INDUSTRIES ══════════════════ */}
+        <section className="bg-bg border-t border-rule">
+          <div className={`${PAGE} py-24 md:py-36`}>
+            <Reveal>
+              <h2 className="section-title max-w-[22ch] mb-12">
+                Patents for the technologies that matter.
+              </h2>
+            </Reveal>
+
+            <div className="industries-grid">
+              {INDUSTRIES.map((ind) => (
+                <IndustryTile
+                  key={ind.name}
+                  title={ind.name}
+                  image={ind.img}
+                  featured={ind.featured}
+                  wide={ind.wide}
+                />
+              ))}
+            </div>
+
+            <div className="mt-10">
+              <Link href="/industries" className="text-[15px] inline-flex items-center gap-1.5 sage-underline pb-0.5">
+                See all industries <span aria-hidden>→</span>
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -458,17 +377,9 @@ export default function Home() {
                   shaping climate tech. When you work with us, you get warm intros into the parts
                   of the ecosystem you actually need.
                 </p>
-                <p className="text-[14.5px] text-ink/85 max-w-[44ch] flex items-start gap-3">
-                  <span
-                    className="shrink-0 mt-0.5 px-2 py-0.5 rounded text-[11px] font-bold tracking-wide"
-                    style={{ background: "var(--lime)", color: "var(--ink)" }}
-                  >
-                    10% OFF
-                  </span>
-                  <span>
-                    Referred by one of our partners?{" "}
-                    <span className="text-rust font-medium">You get 10% off our flat fees.</span>
-                  </span>
+                <p className="text-[14px] text-ink/70 max-w-[44ch]">
+                  Referred by one of our partners?{" "}
+                  <span className="text-rust font-medium">You get 10% off our flat fees.</span>
                 </p>
                 <Link
                   href="/for-partners"
@@ -502,11 +413,11 @@ export default function Home() {
           {/* Lime accent ring */}
           <div
             className="absolute -bottom-48 -right-48 w-[500px] h-[500px] rounded-full pointer-events-none"
-            style={{ border: "1px solid rgba(216,255,79,0.15)" }}
+            style={{ border: "1px solid rgba(183,211,107,0.18)" }}
           />
           <div
             className="absolute -bottom-32 -right-32 w-[340px] h-[340px] rounded-full pointer-events-none"
-            style={{ border: "1px solid rgba(216,255,79,0.08)" }}
+            style={{ border: "1px solid rgba(183,211,107,0.10)" }}
           />
 
           <div className={`${PAGE} relative z-10 py-28 md:py-40 text-center`}>
@@ -526,7 +437,7 @@ export default function Home() {
               <div className="mt-12">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2.5 bg-lime text-ink pl-6 pr-5 py-3.5 rounded-md text-[14px] font-semibold hover:bg-white transition-colors"
+                  className="group inline-flex items-center gap-2.5 bg-lime text-ink pl-6 pr-5 py-3.5 rounded-md text-[14px] font-medium hover:bg-white transition-colors"
                 >
                   Book a free consultation
                   <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden>→</span>

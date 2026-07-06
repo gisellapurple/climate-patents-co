@@ -33,7 +33,11 @@ const ITEMS = [
   },
   {
     q: 'How is the Climate Patent Collective a "collective"?',
-    a: "One of our priorities is keeping a strong network across the climate ecosystem. We connect our clients with relevant accelerators, VCs, and other mission-aligned service providers.",
+    a: "One of our priorities is keeping a strong network across the climate ecosystem. We connect our clients with relevant accelerators, VCs, and other mission-aligned service providers. Our employees also participate in the success of the business through a profit share, ensuring compensation is fair and merit-based.",
+  },
+  {
+    q: "Why are your provisional applications more expensive relative to your other services?",
+    a: "Given the current funding and political environment, we believe most climate tech startups should file with international markets in mind. As a result, we file provisionals that are more robust and capable of supporting later filing in Europe and other jurisdictions outside the US. These jurisdictions tend to be more strict about direct support in provisional applications, so we put extra effort early to keep you protected internationally. If you don't plan on developing an international portfolio, we can reduce our fees accordingly.",
   },
 ];
 
