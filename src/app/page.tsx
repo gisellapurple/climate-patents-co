@@ -14,17 +14,17 @@ import { IndustryTile } from "@/components/IndustryTile";
 // Energy (featured/tall) anchors col1 rows 1-2; Carbon anchors col1 rows 3-4;
 // Climate AI (wide) becomes a full-width strip at the bottom.
 const INDUSTRIES: { name: string; img: string; featured?: boolean; wide?: boolean }[] = [
-  { name: "Energy Storage & Batteries",            img: "/ind-energy.png",    featured: true  },
-  { name: "Solar & Renewable Energy",              img: "/ind-solar.png"                      },
-  { name: "Hydrogen & Alternative Fuels",          img: "/ind-hydrogen.png"                   },
-  { name: "Sustainable Transportation & EVs",      img: "/ind-transport.png"                  },
-  { name: "Sustainable Aviation",                  img: "/ind-aviation.png"                   },
-  { name: "Carbon Capture, Removal & Utilization", img: "/ind-carbon.png"                     },
-  { name: "Green Buildings & HVAC",                img: "/ind-buildings.png"                  },
-  { name: "Sustainable Agriculture & Ag-Tech",     img: "/ind-agtech.png"                     },
-  { name: "Circular Economy & Recycling",          img: "/ind-circular.png"                   },
-  { name: "Geothermal",                            img: "/ind-geothermal.png"                 },
-  { name: "Climate AI & Software",                 img: "/ind-climateai.png"                  },
+  { name: "Energy Storage & Batteries",            img: "/ind-energy.jpg",    featured: true  },
+  { name: "Solar & Renewable Energy",              img: "/ind-solar.jpg"                      },
+  { name: "Hydrogen & Alternative Fuels",          img: "/ind-hydrogen.jpg"                   },
+  { name: "Sustainable Transportation & EVs",      img: "/ind-transport.jpg"                  },
+  { name: "Sustainable Aviation",                  img: "/ind-aviation.jpg"                   },
+  { name: "Carbon Capture, Removal & Utilization", img: "/ind-carbon.jpg"                     },
+  { name: "Green Buildings & HVAC",                img: "/ind-buildings.jpg"                  },
+  { name: "Sustainable Agriculture & Ag-Tech",     img: "/ind-agtech.jpg"                     },
+  { name: "Circular Economy & Recycling",          img: "/ind-circular.jpg"                   },
+  { name: "Geothermal",                            img: "/ind-geothermal.jpg"                 },
+  { name: "Climate AI & Software",                 img: "/ind-climateai.jpg"                  },
 ];
 
 const CASE_STUDIES = [
@@ -91,28 +91,28 @@ const PILLARS = [
   {
     title: "Strategy first",
     body: "Your patent strategy should communicate your mission and what makes you different. Most firms apply strategy one patent at a time; we take a portfolio-level approach to make sure every patent application we file tells a coherent story about your technology and your business.",
-    img: "/pillar-strategy.png",
+    img: "/pillar-strategy.jpg",
     accentBg: "bg-citron",
     accentBar: "#B7D36B",
   },
   {
     title: "Flat fees, transparent budgets",
     body: "Every project is flat-fee. In your first strategy session, we map out your full portfolio budget for the next 18 months, so there are no billing surprises.",
-    img: "/pillar-fees.png",
+    img: "/pillar-fees.jpg",
     accentBg: "bg-forest",
     accentBar: "#2F6154",
   },
   {
     title: "Fast turnarounds",
     body: "We turn around fully drafted patent applications within three weeks on average. We plan far ahead of major deadlines and milestones to ensure there are no emergencies or rushed jobs.",
-    img: "/pillar-fast.png",
+    img: "/pillar-fast.jpg",
     accentBg: "bg-rust",
     accentBar: "#C96A43",
   },
   {
     title: "Climate fluency",
     body: "We've drafted patents on ocean-enhanced weathering, direct air capture, heat pumps, short-haul transport electric drones, EV charging protocols, precision ag systems, and a lot more. You won't spend your first call explaining why your technology is important.",
-    img: "/pillar-climate.png",
+    img: "/pillar-climate.jpg",
     accentBg: "bg-moss",
     accentBar: "#7FAE6A",
   },
