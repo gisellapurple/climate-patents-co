@@ -1,104 +1,118 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export function TopoCluster() {
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  useEffect(() => {
-    const svg = svgRef.current;
-    if (!svg) return;
-    svg.innerHTML = "";
-    const NS = "http://www.w3.org/2000/svg";
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const cx = 920;
-    const cy = 260;
-    const N = 16;
-
-    const perturb = (a: number) =>
-      Math.sin(a * 2 + 0.6) * 22 +
-      Math.sin(a * 3 + 2.4) * 13 +
-      Math.sin(a * 5 + 1.7) * 7 +
-      Math.sin(a * 7 + 0.3) * 3.6 +
-      Math.sin(a * 11 + 1.1) * 2.0;
-
-    const paths: SVGPathElement[] = [];
-
-    for (let i = 0; i < N; i++) {
-      const R = 44 + i * 26;
-      const steps = 120;
-      const pts: [number, number][] = [];
-      for (let s = 0; s < steps; s++) {
-        const a = (s / steps) * Math.PI * 2;
-        const r = R + perturb(a);
-        const ang = a - 0.08;
-        const x = cx + Math.cos(ang) * r * 1.18;
-        const y = cy + Math.sin(ang) * r * 0.94;
-        pts.push([x, y]);
-      }
-      const n = pts.length;
-      let d = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
-      for (let k = 0; k < n; k++) {
-        const p0 = pts[(k - 1 + n) % n];
-        const p1 = pts[k];
-        const p2 = pts[(k + 1) % n];
-        const p3 = pts[(k + 2) % n];
-        const c1x = p1[0] + (p2[0] - p0[0]) / 6;
-        const c1y = p1[1] + (p2[1] - p0[1]) / 6;
-        const c2x = p2[0] - (p3[0] - p1[0]) / 6;
-        const c2y = p2[1] - (p3[1] - p1[1]) / 6;
-        d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)} ${c2x.toFixed(1)} ${c2y.toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
-      }
-      d += " Z";
-
-      const path = document.createElementNS(NS, "path");
-      path.setAttribute("d", d);
-      path.setAttribute("stroke", "#5A8054");
-      path.setAttribute("stroke-width", "0.45");
-      path.setAttribute("fill", "none");
-      path.setAttribute("vector-effect", "non-scaling-stroke");
-      path.setAttribute("class", "topo-contour");
-      path.setAttribute("stroke", i < 5 ? "#5A8054" : "#6B9464");
-      path.style.opacity = String(Math.max(0.22, 0.90 - i * 0.04));
-      svg.appendChild(path);
-      paths.push(path);
-    }
-
-    if (reduced) return;
-
-    paths.forEach((path, i) => {
-      const len = path.getTotalLength();
-      path.style.strokeDasharray = String(len);
-      path.style.strokeDashoffset = String(len);
-      path.style.transition = `stroke-dashoffset 1800ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 70}ms`;
-    });
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        paths.forEach((path) => {
-          path.style.strokeDashoffset = "0";
-        });
-      });
-    });
-  }, []);
-
   return (
     <div
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{
-        maskImage: "radial-gradient(ellipse 75% 110% at 88% 50%, black 40%, transparent 100%)",
-        WebkitMaskImage: "radial-gradient(ellipse 75% 110% at 88% 50%, black 40%, transparent 100%)",
-      }}
+      className="absolute inset-y-0 right-0 w-full md:w-[60%] z-0 pointer-events-none select-none"
       aria-hidden="true"
     >
+      {/* Base image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-abstract.png"
+          alt=""
+          fill
+          priority
+          style={{ objectFit: "contain", objectPosition: "center right" }}
+        />
+      </div>
+
+      {/* Animated SVG overlay */}
       <svg
-        ref={svgRef}
-        viewBox="0 0 1100 500"
-        preserveAspectRatio="xMaxYMid slice"
+        viewBox="0 0 800 700"
         className="absolute inset-0 w-full h-full"
-        style={{ overflow: "visible" }}
-        xmlns="http://www.w3.org/2000/svg"
+        style={{ overflow: "visible", pointerEvents: "none" }}
+      >
+        {/* Drifting nodes */}
+        <circle className="h-node h-node-1" r="5" />
+        <circle className="h-node h-node-2" r="3.5" />
+        <circle className="h-node h-node-3" r="4.5" />
+        <circle className="h-node h-node-4" r="3" />
+        <circle className="h-node h-node-5" r="2.5" />
+
+        {/* Pulsing ring — centred on the circular forms in the image */}
+        <circle
+          cx="490" cy="310" r="100"
+          fill="none"
+          stroke="rgba(17,17,17,0.2)"
+          strokeWidth="0.9"
+          className="h-pulse"
+        />
+        {/* Second ring, offset */}
+        <circle
+          cx="560" cy="430" r="72"
+          fill="none"
+          stroke="rgba(17,17,17,0.12)"
+          strokeWidth="0.7"
+          className="h-pulse-2"
+        />
+      </svg>
+
+      {/* Left-edge gradient fade so image blends into the bg */}
+      <div
+        className="absolute inset-y-0 left-0 w-2/3"
+        style={{
+          background: "linear-gradient(to right, var(--bg) 0%, var(--bg) 20%, color-mix(in srgb, var(--bg) 60%, transparent) 60%, transparent 100%)",
+        }}
       />
+      {/* Bottom-edge fade */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-32"
+        style={{
+          background: "linear-gradient(to top, var(--bg), transparent)",
+        }}
+      />
+
+      <style>{`
+        .h-node { fill: #2478ff; opacity: 0.88; }
+
+        .h-node-1 {
+          offset-path: path("M200 350 C330 270 460 300 600 230 S770 200 840 240");
+          animation: hMove 13s linear infinite;
+        }
+        .h-node-2 {
+          fill: #d8ff4f;
+          offset-path: path("M280 500 C410 420 540 380 680 360");
+          animation: hMove 18s linear infinite;
+        }
+        .h-node-3 {
+          fill: #f15a2b;
+          offset-path: path("M480 200 C580 260 700 275 800 255");
+          animation: hMove 22s linear infinite;
+        }
+        .h-node-4 {
+          fill: #19b6b6;
+          offset-path: path("M120 600 C280 540 400 510 540 490 S700 475 800 510");
+          animation: hMove 27s linear infinite;
+        }
+        .h-node-5 {
+          fill: #2478ff;
+          opacity: 0.5;
+          offset-path: path("M360 160 C460 200 580 210 700 190");
+          animation: hMove 31s linear infinite;
+        }
+
+        .h-pulse {
+          transform-origin: 490px 310px;
+          animation: hPulse 9s ease-in-out infinite;
+        }
+        .h-pulse-2 {
+          transform-origin: 560px 430px;
+          animation: hPulse 12s ease-in-out infinite;
+          animation-delay: -4s;
+        }
+
+        @keyframes hMove {
+          from { offset-distance: 0%; }
+          to   { offset-distance: 100%; }
+        }
+        @keyframes hPulse {
+          0%, 100% { transform: scale(1);    opacity: 0.15; }
+          50%       { transform: scale(1.06); opacity: 0.35; }
+        }
+      `}</style>
     </div>
   );
 }

@@ -48,28 +48,44 @@ export function TestimonialCarousel() {
 
   return (
     <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      {/* Quote */}
       <div className="md:col-span-8">
-        <span className="block text-rust font-display text-[48px] leading-none mb-6">&ldquo;</span>
+        {/* Opening mark */}
+        <span className="block font-display text-[56px] leading-none mb-6" style={{ color: "var(--lime)" }}>
+          &ldquo;
+        </span>
+
         <blockquote
-          className="font-display text-[20px] md:text-[26px] leading-[1.45] tracking-[-0.01em] text-ink/90 transition-opacity duration-300"
+          className="font-display text-[20px] md:text-[28px] leading-[1.4] tracking-[-0.015em] text-white/90 transition-opacity duration-300"
           style={{ opacity: animating ? 0 : 1 }}
         >
           {t.q}
         </blockquote>
+
         <figcaption
-          className="mt-8 transition-opacity duration-300"
+          className="mt-10 flex items-center gap-4 transition-opacity duration-300"
           style={{ opacity: animating ? 0 : 1 }}
         >
-          <div className="font-medium text-[15px]">{t.name}</div>
-          <div className="text-[13.5px] text-ink/55 mt-1 leading-snug">{t.title}</div>
-          {t.detail && (
-            <div className="text-[13px] text-ink/40 mt-0.5 leading-snug">{t.detail}</div>
-          )}
+          {/* Avatar placeholder */}
+          <span
+            className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[11px] font-bold text-charcoal"
+            style={{ background: "var(--lime)" }}
+          >
+            {t.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+          </span>
+          <div>
+            <div className="font-medium text-[15px] text-white">{t.name}</div>
+            <div className="text-[13px] text-white/45 mt-0.5 leading-snug">{t.title}</div>
+            {t.detail && (
+              <div className="text-[12px] text-white/30 mt-0.5 leading-snug">{t.detail}</div>
+            )}
+          </div>
         </figcaption>
       </div>
 
+      {/* Controls */}
       <div className="md:col-span-4 md:pt-20 flex md:flex-col gap-6 md:gap-0 items-start md:items-end">
-        <div className="flex md:flex-col gap-2.5 md:gap-3">
+        <div className="flex md:flex-col gap-3 md:gap-4">
           {TESTIMONIALS.map((item, i) => (
             <button
               key={i}
@@ -80,13 +96,13 @@ export function TestimonialCarousel() {
               <span
                 className={`block shrink-0 transition-all duration-300 ${
                   i === active
-                    ? "w-8 h-px bg-rust"
-                    : "w-3 h-px bg-ink/25 group-hover:bg-ink/50"
+                    ? "w-8 h-px bg-lime"
+                    : "w-3 h-px bg-white/20 group-hover:bg-white/40"
                 }`}
               />
               <span
                 className={`text-[13px] transition-colors duration-300 ${
-                  i === active ? "text-ink font-medium" : "text-ink/40 group-hover:text-ink/65"
+                  i === active ? "text-white font-medium" : "text-white/30 group-hover:text-white/55"
                 }`}
               >
                 {item.name}
@@ -95,11 +111,15 @@ export function TestimonialCarousel() {
           ))}
         </div>
 
-        <div className="hidden md:block mt-10 w-full">
-          <div className="h-px bg-rule w-full relative overflow-hidden">
+        {/* Progress bar */}
+        <div className="hidden md:block mt-12 w-full">
+          <div className="h-px bg-white/10 w-full relative overflow-hidden">
             <span
-              className="absolute top-0 left-0 h-full bg-rust transition-all duration-[5800ms] ease-linear"
-              style={{ width: animating ? "0%" : "100%" }}
+              className="absolute top-0 left-0 h-full transition-all duration-[5800ms] ease-linear"
+              style={{
+                width: animating ? "0%" : "100%",
+                background: "var(--lime)",
+              }}
               key={active}
             />
           </div>

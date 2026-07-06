@@ -1,33 +1,70 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
 :root {
-  --bg: #FBFAF7;
-  --bg-alt: #FFFFFF;
-  --bg-tint: #F1F4EB;
-  --ink: #0F0F0F;
-  --rust: #B85A2B;
-  --rust-soft: #D17A4D;
-  --sage: #5A8054;
+  /* Base surfaces */
+  --bg:        #f8f7f2;
+  --bg-alt:    #ffffff;
+  --bg-tint:   #f0efe9;
+  --surface:   #ffffff;
+  --soft-gray: #ecebe5;
+  --charcoal:  #1a1a17;
+
+  /* Ink */
+  --ink:       #111111;
+  --muted-ink: #5f5f5a;
+  --line:      #d9d8cf;
+  --rule:      rgba(17, 17, 17, 0.09);
+  --rule-strong: rgba(17, 17, 17, 0.18);
+
+  /* Accents */
+  --lime:      #d8ff4f;
+  --acid-green:#c9f12f;
+  --green:     #27c878;
+  --teal:      #19b6b6;
+  --sky-blue:  #69c8ff;
+  --deep-blue: #2478ff;
+  --orange:    #f15a2b;
+  --rust:      #b84f25;
+  --rust-soft: #d17a4d;
+
+  /* Legacy compat */
+  --sage:      #5A8054;
   --sage-soft: #7BA075;
-  --rule: rgba(15, 15, 15, 0.10);
-  --rule-strong: rgba(15, 15, 15, 0.18);
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg-alt: var(--bg-alt);
-  --color-bg-tint: var(--bg-tint);
-  --color-ink: var(--ink);
-  --color-rust: var(--rust);
-  --color-rust-soft: var(--rust-soft);
-  --color-sage: var(--sage);
-  --color-sage-soft: var(--sage-soft);
-  --color-rule: var(--rule);
-  --color-rule-strong: var(--rule-strong);
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
+  --color-bg:         var(--bg);
+  --color-bg-alt:     var(--bg-alt);
+  --color-bg-tint:    var(--bg-tint);
+  --color-surface:    var(--surface);
+  --color-soft-gray:  var(--soft-gray);
+  --color-charcoal:   var(--charcoal);
+  --color-ink:        var(--ink);
+  --color-muted-ink:  var(--muted-ink);
+  --color-line:       var(--line);
+  --color-rule:       var(--rule);
+  --color-rule-strong:var(--rule-strong);
+  --color-lime:       var(--lime);
+  --color-acid-green: var(--acid-green);
+  --color-green:      var(--green);
+  --color-teal:       var(--teal);
+  --color-sky-blue:   var(--sky-blue);
+  --color-deep-blue:  var(--deep-blue);
+  --color-orange:     var(--orange);
+  --color-rust:       var(--rust);
+  --color-rust-soft:  var(--rust-soft);
+  --color-sage:       var(--sage);
+  --color-sage-soft:  var(--sage-soft);
+  --font-display:     var(--font-display);
+  --font-sans:        var(--font-sans);
 }
 
+/* ─────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────── */
 html, body {
   background: var(--bg);
   color: var(--ink);
@@ -41,17 +78,43 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY SCALE
+───────────────────────────────────────────── */
 .font-display {
   font-family: var(--font-display), system-ui, sans-serif;
   letter-spacing: -0.022em;
 }
 
+.hero-title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(3.25rem, 6.5vw, 8rem);
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+  font-weight: 400;
+}
+
+.section-title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.5rem, 4.5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.large-body {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────
+   LEGACY UTILITIES
+───────────────────────────────────────────── */
 .section-label {
   font-family: var(--font-sans), system-ui, sans-serif;
   font-style: italic;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--sage);
-  letter-spacing: -0.005em;
+  letter-spacing: 0.03em;
   display: inline-block;
   margin-bottom: 18px;
 }
@@ -68,6 +131,14 @@ body {
   background-image: linear-gradient(var(--rust), var(--rust));
 }
 
+.lime-underline {
+  background-image: linear-gradient(var(--lime), var(--lime));
+  background-size: 100% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: color 0.2s;
+}
+
 .rust-mark::before {
   content: "";
   display: inline-block;
@@ -79,6 +150,120 @@ body {
   border-radius: 1px;
 }
 
+/* ─────────────────────────────────────────────
+   TECH MOTIF UTILITIES
+───────────────────────────────────────────── */
+.tech-dots {
+  background-image: radial-gradient(circle, rgba(17,17,17,0.14) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.tech-dots-light {
+  background-image: radial-gradient(circle, rgba(17,17,17,0.09) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.tech-dots-dark {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.tech-dots-lime {
+  background-image: radial-gradient(circle, rgba(17,17,17,0.18) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ─────────────────────────────────────────────
+   SERVICE PANELS
+───────────────────────────────────────────── */
+.service-panel {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.service-panel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--lime);
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-panel:hover::after {
+  width: 100%;
+}
+
+.service-panel-on-dark::after {
+  background: var(--lime);
+}
+
+/* ─────────────────────────────────────────────
+   INDUSTRY TILES
+───────────────────────────────────────────── */
+.industry-tile {
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.industry-tile .tile-wash {
+  position: absolute;
+  inset: 0;
+  background: var(--lime);
+  opacity: 0;
+  mix-blend-mode: multiply;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+
+.industry-tile:hover .tile-wash {
+  opacity: 0.12;
+}
+
+.industry-tile-dark .tile-wash {
+  background: rgba(255,255,255,0.06);
+  mix-blend-mode: screen;
+}
+
+.industry-tile-dark:hover .tile-wash {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────
+   CASE STUDY DOSSIER CARDS
+───────────────────────────────────────────── */
+.dossier-card {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.dossier-card .dossier-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.dossier-card .dossier-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--lime);
+  opacity: 0;
+  mix-blend-mode: multiply;
+  transition: opacity 0.4s;
+}
+
+.dossier-card:hover .dossier-img-wrap::after {
+  opacity: 0.25;
+}
+
+/* ─────────────────────────────────────────────
+   CAROUSEL
+───────────────────────────────────────────── */
 .carousel-mask {
   mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
@@ -88,12 +273,25 @@ body {
 }
 @keyframes cpc-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(calc(-50% - 28px)); }
+  to   { transform: translateX(calc(-50% - 28px)); }
 }
 
+/* ─────────────────────────────────────────────
+   PILLAR CARDS
+───────────────────────────────────────────── */
+.pillar-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .rotating-word > span:not(:first-child) { display: none; }
   .rotating-word > span:first-child { opacity: 1 !important; position: static !important; transform: none !important; }
   .carousel-track { animation: none; }
   .topo-contour { stroke-dashoffset: 0 !important; transition: none !important; }
+  .h-node-1, .h-node-2, .h-node-3, .h-node-4, .h-node-5, .h-pulse,
+  .node-one, .node-two, .node-three, .pulse-ring { animation: none; }
 }

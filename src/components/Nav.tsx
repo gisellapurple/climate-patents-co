@@ -19,7 +19,7 @@ export function Nav() {
         </nav>
         <Link
           href="/contact"
-          className="hidden md:inline-flex items-center gap-2 bg-ink text-bg px-5 py-2.5 rounded-md text-[13.5px] font-medium hover:bg-rust transition-colors group"
+          className="hidden md:inline-flex items-center gap-2 bg-ink text-bg px-5 py-2.5 rounded-md text-[13.5px] font-medium hover:bg-lime hover:text-ink transition-colors group"
         >
           Book a call
           <span className="inline-block transition-transform group-hover:translate-x-0.5" aria-hidden>
