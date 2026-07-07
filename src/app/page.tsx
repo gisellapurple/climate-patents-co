@@ -274,9 +274,8 @@ export default function Home() {
             <div className="grid md:grid-cols-12 gap-3">
               {SERVICES.map((s, i) => (
                 <Reveal key={s.href} delay={i * 70} className={s.span}>
-                  <Link
-                    href={s.href}
-                    className={`service-panel group block ${s.bg} ${s.text} ${s.dots} rounded-2xl p-8 md:p-10 h-full min-h-[200px] flex flex-col gap-4 relative`}
+                  <div
+                    className={`service-panel ${s.bg} ${s.text} ${s.dots} rounded-2xl p-8 md:p-10 h-full min-h-[200px] flex flex-col gap-4 relative`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`block w-5 h-px ${s.text === "text-white" ? "bg-white/30" : "bg-ink/20"} rounded`} />
@@ -292,14 +291,18 @@ export default function Home() {
                         {s.body}
                       </p>
                     </div>
-                  </Link>
+                  </div>
                 </Reveal>
               ))}
             </div>
 
             <div className="mt-10">
-              <Link href="/services" className="text-[15px] inline-flex items-center gap-1.5 sage-underline pb-0.5">
-                Explore all services <span aria-hidden>→</span>
+              <Link
+                href="/services"
+                className="group inline-flex items-center gap-2.5 bg-ink text-bg pl-5 pr-4 py-3 rounded-md text-[13.5px] font-medium hover:bg-lime hover:text-ink transition-colors"
+              >
+                Explore all services
+                <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden>→</span>
               </Link>
             </div>
           </div>
@@ -355,8 +358,12 @@ export default function Home() {
             </div>
 
             <div className="mt-10">
-              <Link href="/industries" className="text-[15px] inline-flex items-center gap-1.5 sage-underline pb-0.5">
-                See all industries <span aria-hidden>→</span>
+              <Link
+                href="/industries"
+                className="group inline-flex items-center gap-2.5 bg-ink text-bg pl-5 pr-4 py-3 rounded-md text-[13.5px] font-medium hover:bg-lime hover:text-ink transition-colors"
+              >
+                See all industries
+                <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden>→</span>
               </Link>
             </div>
           </div>

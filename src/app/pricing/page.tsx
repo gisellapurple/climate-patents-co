@@ -65,24 +65,27 @@ export default function PricingPage() {
                 </h2>
               </Reveal>
               <Reveal delay={180} className="md:col-span-6 md:col-start-7">
-                <div className="text-[15.5px] md:text-[16px] leading-[1.65] text-ink/75 space-y-5 border-l-2 border-sage/30 pl-6">
+                <div
+                  className="text-[15.5px] md:text-[16px] leading-[1.7] text-ink/72 space-y-5 pl-7"
+                  style={{ borderLeft: "2px solid var(--lime)" }}
+                >
                   <p>
-                    Almost every other patent firm in the country bills by the hour. We
-                    don&rsquo;t. Every project we take on is priced as a flat fee, and in your
-                    first strategy session we map out your 18-month portfolio budget so you can
-                    plan around fundraises, grants, and product milestones.
+                    Most other patent firms in the country bill by the hour. We don&rsquo;t.
+                    Every project we take on is priced as a flat fee, and in your first strategy
+                    session, we map out an 18-month portfolio budget that plans around
+                    fundraises, grants, and product milestones.
                   </p>
                   <p>
-                    Our flat fees include all consultations, drafting, internal review, your
-                    revisions, patent drawings, information disclosure statements (IDSs), and
-                    USPTO filing coordination. The only additional costs are USPTO government
-                    fees, which we pass through at cost.
+                    Our flat fees include all consultations, drafting, internal and external
+                    review, patent drawings, information disclosure statements (IDSs), USPTO
+                    filing coordination, and USPTO fees. Any optional official fees not included
+                    in our standard fees are passed through at cost.
                   </p>
                   <p>
                     We price our work to come in roughly{" "}
-                    <span className="text-rust font-medium">60% below typical big law rates</span>{" "}
+                    <span className="text-ink font-medium">60% below typical big law rates</span>{" "}
                     and{" "}
-                    <span className="text-rust font-medium">40% below typical boutique firms</span>{" "}
+                    <span className="text-ink font-medium">40% below typical boutique firms</span>{" "}
                     serving venture-backed startups.
                   </p>
                 </div>
