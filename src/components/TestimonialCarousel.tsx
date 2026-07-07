@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 
 const TESTIMONIALS = [
@@ -48,15 +49,14 @@ export function TestimonialCarousel() {
 
   return (
     <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-      {/* Quote */}
-      <div className="md:col-span-8">
-        {/* Opening mark */}
+      {/* Quote — left */}
+      <div className="md:col-span-7">
         <span className="block font-display text-[56px] leading-none mb-6" style={{ color: "var(--lime)" }}>
           &ldquo;
         </span>
 
         <blockquote
-          className="font-display text-[20px] md:text-[28px] leading-[1.4] tracking-[-0.015em] text-white/90 transition-opacity duration-300"
+          className="font-display text-[20px] md:text-[26px] leading-[1.4] tracking-[-0.015em] text-white/90 transition-opacity duration-300"
           style={{ opacity: animating ? 0 : 1 }}
         >
           {t.q}
@@ -66,7 +66,6 @@ export function TestimonialCarousel() {
           className="mt-10 flex items-center gap-4 transition-opacity duration-300"
           style={{ opacity: animating ? 0 : 1 }}
         >
-          {/* Avatar placeholder */}
           <span
             className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[11px] font-bold text-charcoal"
             style={{ background: "var(--lime)" }}
@@ -81,48 +80,35 @@ export function TestimonialCarousel() {
             )}
           </div>
         </figcaption>
-      </div>
 
-      {/* Controls */}
-      <div className="md:col-span-4 md:pt-20 flex md:flex-col gap-6 md:gap-0 items-start md:items-end">
-        <div className="flex md:flex-col gap-3 md:gap-4">
-          {TESTIMONIALS.map((item, i) => (
+        {/* Progress dots */}
+        <div className="flex items-center gap-2.5 mt-10">
+          {TESTIMONIALS.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              aria-label={`Show testimonial from ${item.name}`}
-              className="group flex md:flex-row-reverse items-center gap-3 text-left"
-            >
-              <span
-                className={`block shrink-0 transition-all duration-300 ${
-                  i === active
-                    ? "w-8 h-px bg-lime"
-                    : "w-3 h-px bg-white/20 group-hover:bg-white/40"
-                }`}
-              />
-              <span
-                className={`text-[13px] transition-colors duration-300 ${
-                  i === active ? "text-white font-medium" : "text-white/30 group-hover:text-white/55"
-                }`}
-              >
-                {item.name}
-              </span>
-            </button>
+              aria-label={`Show testimonial ${i + 1}`}
+              className={`transition-all duration-300 rounded-full ${
+                i === active
+                  ? "w-6 h-1.5 bg-lime"
+                  : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+              }`}
+            />
           ))}
         </div>
+      </div>
 
-        {/* Progress bar */}
-        <div className="hidden md:block mt-12 w-full">
-          <div className="h-px bg-white/10 w-full relative overflow-hidden">
-            <span
-              className="absolute top-0 left-0 h-full transition-all duration-[5800ms] ease-linear"
-              style={{
-                width: animating ? "0%" : "100%",
-                background: "var(--lime)",
-              }}
-              key={active}
-            />
-          </div>
+      {/* Logo wall — right */}
+      <div className="md:col-span-5 md:pt-4 flex items-center justify-center">
+        <div className="w-full rounded-xl overflow-hidden" style={{ opacity: 0.85 }}>
+          <Image
+            src="/client-logos.jpg"
+            alt="CPC clients"
+            width={600}
+            height={400}
+            className="w-full h-auto object-contain"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
         </div>
       </div>
     </div>

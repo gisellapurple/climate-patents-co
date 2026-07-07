@@ -34,6 +34,24 @@ export default function CaseStudiesPage() {
                 style={{ objectFit: "cover", objectPosition: "center" }}
               />
             </div>
+            {/* Animated nodes */}
+            <svg
+              viewBox="0 0 800 600"
+              className="absolute inset-0 w-full h-full"
+              style={{ overflow: "hidden", pointerEvents: "none" }}
+              aria-hidden
+            >
+              <circle className="cs-node cs-node-1" r="5" />
+              <circle className="cs-node cs-node-2" r="3" />
+              <circle className="cs-node cs-node-3" r="4" />
+              <circle
+                cx="420" cy="280" r="90"
+                fill="none"
+                stroke="rgba(17,17,17,0.12)"
+                strokeWidth="0.75"
+                className="cs-pulse"
+              />
+            </svg>
             <div
               className="absolute inset-y-0 left-0 w-3/4"
               style={{
@@ -47,7 +65,7 @@ export default function CaseStudiesPage() {
             />
           </div>
 
-          <div className="absolute inset-0 bg-bg/55 md:hidden pointer-events-none z-[1]" />
+          <div className="absolute inset-0 md:hidden pointer-events-none z-[1]" style={{ backgroundColor: "rgba(245,243,236,0.55)" }} />
 
           <div
             className={`${PAGE} relative z-10 flex flex-col justify-center`}
@@ -69,6 +87,36 @@ export default function CaseStudiesPage() {
               </Reveal>
             </div>
           </div>
+
+          <style>{`
+            .cs-node { fill: #2478ff; opacity: 0.75; }
+            .cs-node-1 {
+              offset-path: path("M260 440 C380 370 510 330 660 305");
+              animation: csMove 15s linear infinite;
+            }
+            .cs-node-2 {
+              fill: #B7D36B;
+              offset-path: path("M190 510 C330 450 480 415 640 395");
+              animation: csMove 22s linear infinite;
+            }
+            .cs-node-3 {
+              fill: #C96A43;
+              offset-path: path("M370 185 C490 220 615 238 755 220");
+              animation: csMove 28s linear infinite;
+            }
+            .cs-pulse {
+              transform-origin: 420px 280px;
+              animation: csPulse 10s ease-in-out infinite;
+            }
+            @keyframes csMove {
+              from { offset-distance: 0%; }
+              to   { offset-distance: 100%; }
+            }
+            @keyframes csPulse {
+              0%, 100% { transform: scale(1);    opacity: 0.08; }
+              50%       { transform: scale(1.06); opacity: 0.20; }
+            }
+          `}</style>
         </section>
 
         {/* ══════════════════ CASE STUDY CARDS ══════════════════ */}

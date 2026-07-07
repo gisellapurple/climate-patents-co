@@ -389,7 +389,7 @@ export default function Home() {
                   <span className="text-rust font-medium">You get 10% off our flat fees.</span>
                 </p>
                 <Link
-                  href="/for-partners"
+                  href="/partners"
                   className="text-[15px] inline-flex items-center gap-1.5 sage-underline pb-0.5"
                 >
                   Become a partner <span aria-hidden>→</span>

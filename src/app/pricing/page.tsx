@@ -74,6 +74,24 @@ export default function PricingPage() {
             <div className="absolute inset-0">
               <Image src="/pricing-hero.jpg" alt="" fill priority style={{ objectFit: "cover", objectPosition: "center" }} />
             </div>
+            {/* Animated nodes */}
+            <svg
+              viewBox="0 0 800 600"
+              className="absolute inset-0 w-full h-full"
+              style={{ overflow: "hidden", pointerEvents: "none" }}
+              aria-hidden
+            >
+              <circle className="pr-node pr-node-1" r="5" />
+              <circle className="pr-node pr-node-2" r="3.5" />
+              <circle className="pr-node pr-node-3" r="4" />
+              <circle
+                cx="410" cy="290" r="82"
+                fill="none"
+                stroke="rgba(17,17,17,0.12)"
+                strokeWidth="0.75"
+                className="pr-pulse"
+              />
+            </svg>
             <div
               className="absolute inset-y-0 left-0 w-3/4"
               style={{
@@ -105,6 +123,36 @@ export default function PricingPage() {
               </Reveal>
             </div>
           </div>
+
+          <style>{`
+            .pr-node { fill: #2478ff; opacity: 0.75; }
+            .pr-node-1 {
+              offset-path: path("M290 425 C400 355 530 315 680 288");
+              animation: prMove 15s linear infinite;
+            }
+            .pr-node-2 {
+              fill: #B7D36B;
+              offset-path: path("M205 500 C345 438 492 405 650 385");
+              animation: prMove 21s linear infinite;
+            }
+            .pr-node-3 {
+              fill: #C96A43;
+              offset-path: path("M375 188 C495 225 618 240 758 222");
+              animation: prMove 27s linear infinite;
+            }
+            .pr-pulse {
+              transform-origin: 410px 290px;
+              animation: prPulse 10s ease-in-out infinite;
+            }
+            @keyframes prMove {
+              from { offset-distance: 0%; }
+              to   { offset-distance: 100%; }
+            }
+            @keyframes prPulse {
+              0%, 100% { transform: scale(1);    opacity: 0.08; }
+              50%       { transform: scale(1.06); opacity: 0.20; }
+            }
+          `}</style>
         </section>
 
         {/* ══════════════════ NO HOURLY BILLING ══════════════════ */}
@@ -190,8 +238,32 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* ══════════════════ STRATEGIC SUPPORT + PARTNER DISCOUNT ══════════════════ */}
+        {/* ══════════════════ WHAT'S INCLUDED ══════════════════ */}
         <section className="bg-bg-alt border-t border-rule">
+          <div className={`${PAGE} py-24 md:py-36`}>
+            <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+              <Reveal className="md:col-span-4">
+                <h2 className="section-title">What&rsquo;s included.</h2>
+                <p className="mt-4 text-[15px] text-ink/55 leading-[1.6]">
+                  Every flat-fee project includes:
+                </p>
+              </Reveal>
+              <Reveal delay={160} className="md:col-span-6 md:col-start-7">
+                <ul className="divide-y divide-rule border-t border-rule">
+                  {WHATS_INCLUDED.map((item, i) => (
+                    <li key={i} className="flex items-start gap-4 py-4">
+                      <span className="mt-[6px] shrink-0 w-[5px] h-[5px] rounded-full bg-ink/20" />
+                      <span className="text-[15px] text-ink/75 leading-[1.6]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════ STRATEGIC SUPPORT + PARTNER DISCOUNT ══════════════════ */}
+        <section className="bg-bg border-t border-rule">
           <div className={`${PAGE} py-24 md:py-36`}>
             <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
 
@@ -227,30 +299,6 @@ export default function PricingPage() {
                 </div>
               </Reveal>
 
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════════════ WHAT'S INCLUDED ══════════════════ */}
-        <section className="bg-bg border-t border-rule">
-          <div className={`${PAGE} py-24 md:py-36`}>
-            <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-              <Reveal className="md:col-span-4">
-                <h2 className="section-title">What&rsquo;s included.</h2>
-                <p className="mt-4 text-[15px] text-ink/55 leading-[1.6]">
-                  Every flat-fee project includes:
-                </p>
-              </Reveal>
-              <Reveal delay={160} className="md:col-span-6 md:col-start-7">
-                <ul className="divide-y divide-rule border-t border-rule">
-                  {WHATS_INCLUDED.map((item, i) => (
-                    <li key={i} className="flex items-start gap-4 py-4">
-                      <span className="mt-[6px] shrink-0 w-[5px] h-[5px] rounded-full bg-ink/20" />
-                      <span className="text-[15px] text-ink/75 leading-[1.6]">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
             </div>
           </div>
         </section>

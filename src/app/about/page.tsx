@@ -93,6 +93,24 @@ export default function AboutPage() {
                 style={{ objectFit: "cover", objectPosition: "center" }}
               />
             </div>
+            {/* Animated nodes */}
+            <svg
+              viewBox="0 0 800 600"
+              className="absolute inset-0 w-full h-full"
+              style={{ overflow: "hidden", pointerEvents: "none" }}
+              aria-hidden
+            >
+              <circle className="abt-node abt-node-1" r="5" />
+              <circle className="abt-node abt-node-2" r="3" />
+              <circle className="abt-node abt-node-3" r="4" />
+              <circle
+                cx="400" cy="300" r="85"
+                fill="none"
+                stroke="rgba(17,17,17,0.12)"
+                strokeWidth="0.75"
+                className="abt-pulse"
+              />
+            </svg>
             <div
               className="absolute inset-y-0 left-0 w-3/4"
               style={{
@@ -123,11 +141,41 @@ export default function AboutPage() {
               </Reveal>
               <Reveal delay={200}>
                 <p className="large-body mt-7 text-ink/65 max-w-[36ch] leading-[1.5]">
-                  We started CPC because climate tech founders deserve better than what the old model offers.
+                  We started the CPC because climate tech founders deserve better than what the old model offers.
                 </p>
               </Reveal>
             </div>
           </div>
+
+          <style>{`
+            .abt-node { fill: #2478ff; opacity: 0.75; }
+            .abt-node-1 {
+              offset-path: path("M280 430 C390 360 520 320 670 295");
+              animation: abtMove 16s linear infinite;
+            }
+            .abt-node-2 {
+              fill: #B7D36B;
+              offset-path: path("M200 500 C340 440 490 410 650 390");
+              animation: abtMove 23s linear infinite;
+            }
+            .abt-node-3 {
+              fill: #C96A43;
+              offset-path: path("M380 190 C500 230 620 245 760 228");
+              animation: abtMove 29s linear infinite;
+            }
+            .abt-pulse {
+              transform-origin: 400px 300px;
+              animation: abtPulse 11s ease-in-out infinite;
+            }
+            @keyframes abtMove {
+              from { offset-distance: 0%; }
+              to   { offset-distance: 100%; }
+            }
+            @keyframes abtPulse {
+              0%, 100% { transform: scale(1);    opacity: 0.08; }
+              50%       { transform: scale(1.06); opacity: 0.22; }
+            }
+          `}</style>
         </section>
 
         {/* ══════════════════ ORIGIN STORY ══════════════════ */}
