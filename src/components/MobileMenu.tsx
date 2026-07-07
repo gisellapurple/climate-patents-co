@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 
 const LINKS = [
@@ -13,41 +14,30 @@ const LINKS = [
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  return (
-    <>
-      <button
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "Close menu" : "Open menu"}
-        className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-md hover:bg-ink/5 transition-colors"
-      >
-        <span
-          className="block w-5 h-px bg-ink transition-all duration-300 origin-center"
-          style={{ transform: open ? "translateY(6px) rotate(45deg)" : "none" }}
-        />
-        <span
-          className="block w-5 h-px bg-ink transition-all duration-300"
-          style={{ opacity: open ? 0 : 1 }}
-        />
-        <span
-          className="block w-5 h-px bg-ink transition-all duration-300 origin-center"
-          style={{ transform: open ? "translateY(-6px) rotate(-45deg)" : "none" }}
-        />
-      </button>
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-      {open && (
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  const overlay = mounted && open
+    ? createPortal(
         <div
-          className="fixed inset-0 z-30 pt-16 px-6 flex flex-col md:hidden"
-          style={{ backgroundColor: "var(--bg)" }}
-          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-[35] flex flex-col px-6 pt-20"
+          style={{ backgroundColor: "#F5F3EC" }}
         >
-          <nav className="flex flex-col gap-1 pt-6">
+          <nav className="flex flex-col gap-1">
             {LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-display text-[2rem] leading-[1.2] tracking-[-0.03em] text-ink py-3 border-b border-rule hover:text-rust transition-colors"
+                className="font-display text-[2.2rem] leading-[1.2] tracking-[-0.03em] text-ink py-3 border-b border-rule hover:text-rust transition-colors"
               >
                 {l.label}
               </Link>
@@ -62,8 +52,32 @@ export function MobileMenu() {
               Book a call →
             </Link>
           </div>
-        </div>
-      )}
+        </div>,
+        document.body
+      )
+    : null;
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(!open)}
+        aria-label={open ? "Close menu" : "Open menu"}
+        className="md:hidden relative z-[50] flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-md hover:bg-ink/5 transition-colors"
+      >
+        <span
+          className="block w-5 h-px bg-ink transition-all duration-300 origin-center"
+          style={{ transform: open ? "translateY(6px) rotate(45deg)" : "none" }}
+        />
+        <span
+          className="block w-5 h-px bg-ink transition-all duration-300"
+          style={{ opacity: open ? 0 : 1 }}
+        />
+        <span
+          className="block w-5 h-px bg-ink transition-all duration-300 origin-center"
+          style={{ transform: open ? "translateY(-6px) rotate(-45deg)" : "none" }}
+        />
+      </button>
+      {overlay}
     </>
   );
 }
