@@ -134,11 +134,33 @@ export default function Home() {
       <main className="flex-1">
 
         {/* ══════════════════ HERO ══════════════════ */}
-        <section className="relative bg-bg overflow-hidden" style={{ minHeight: "90vh" }}>
-          <TopoCluster />
+        <section className="relative bg-bg overflow-hidden">
+          {/* Mobile: graphic above text */}
           <div
-            className={`${PAGE} relative z-10 flex flex-col justify-center`}
-            style={{ minHeight: "90vh", paddingTop: "7rem", paddingBottom: "6rem" }}
+            className="md:hidden relative w-full overflow-hidden"
+            style={{ height: "60vw" }}
+            aria-hidden
+          >
+            <Image
+              src="/hero-abstract.png"
+              alt=""
+              fill
+              priority
+              style={{ objectFit: "contain", objectPosition: "center right" }}
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 h-14"
+              style={{ background: "linear-gradient(to top, var(--bg), transparent)" }}
+            />
+          </div>
+
+          {/* Desktop: absolutely-positioned cluster */}
+          <div className="hidden md:block">
+            <TopoCluster />
+          </div>
+
+          <div
+            className={`${PAGE} relative z-10 flex flex-col justify-center pt-4 pb-14 md:pt-[7rem] md:pb-[6rem] md:min-h-[90vh]`}
           >
             <div className="max-w-full md:max-w-[46%]">
               {/* Headline */}
@@ -174,9 +196,6 @@ export default function Home() {
               </Reveal>
             </div>
           </div>
-
-          {/* Mobile: show a subtle bg tint so text stays readable over faded image */}
-          <div className="absolute inset-0 bg-bg/55 md:hidden pointer-events-none z-[1]" />
         </section>
 
         {/* ══════════════════ LOGOS ══════════════════ */}
