@@ -96,7 +96,7 @@ export default function ServicesPage() {
               className="absolute inset-y-0 left-0 w-3/4"
               style={{
                 background:
-                  "linear-gradient(to right, var(--bg) 0%, var(--bg) 20%, color-mix(in srgb, var(--bg) 55%, transparent) 60%, transparent 100%)",
+                  "linear-gradient(to right, var(--bg) 0%, var(--bg) 10%, color-mix(in srgb, var(--bg) 12%, transparent) 38%, transparent 100%)",
               }}
             />
             {/* Bottom fade */}
