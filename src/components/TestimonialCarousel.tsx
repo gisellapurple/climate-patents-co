@@ -100,14 +100,14 @@ export function TestimonialCarousel() {
 
       {/* Logo wall — right */}
       <div className="md:col-span-5 md:pt-4 flex items-center justify-center">
-        <div className="w-full rounded-xl overflow-hidden" style={{ opacity: 0.85 }}>
+        <div className="w-full">
           <Image
             src="/client-logos.jpg"
             alt="CPC clients"
-            width={600}
-            height={400}
-            className="w-full h-auto object-contain"
-            style={{ filter: "brightness(0) invert(1)" }}
+            width={1080}
+            height={1260}
+            className="w-full h-auto"
+            style={{ filter: "invert(1)", mixBlendMode: "screen", opacity: 0.9 }}
           />
         </div>
       </div>
