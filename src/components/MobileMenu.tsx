@@ -37,7 +37,8 @@ export function MobileMenu() {
 
       {open && (
         <div
-          className="fixed inset-0 z-30 bg-bg pt-16 px-6 flex flex-col md:hidden"
+          className="fixed inset-0 z-30 pt-16 px-6 flex flex-col md:hidden"
+          style={{ backgroundColor: "var(--bg)" }}
           onClick={() => setOpen(false)}
         >
           <nav className="flex flex-col gap-1 pt-6">
