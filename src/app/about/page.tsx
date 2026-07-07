@@ -11,9 +11,10 @@ const TEAM = [
     title: "Founder & Patent Agent",
     photo: "/team-alex.jpg",
     bio: [
-      "Alex spent nearly a decade representing Silicon Valley startups from pre-seed through Series D, with clients including Airbnb, Apple, Dropbox, Facebook, and Uber. He started his career at Fenwick & West, then joined a boutique firm specializing in early-stage patent strategy before founding the Climate Patent Collective in 2022.",
-      "His first climate tech project was as a student at Harvey Mudd College, where he designed instrumentation for heliostats in a solar-thermal field. He has drafted and prosecuted patents on everything from machine learning to material chemistry, and from 5G telecommunications to decentralized carbon credit platforms.",
-      "Outside of work, Alex races triathlons and plays a lot of board games.",
+      "Alex spent his early career at Fenwick & West drafting patents for companies like Airbnb, Apple, Dropbox, Facebook, and Uber. The work was technically interesting, but felt disconnected and impersonal. After Fenwick, Alex moved to a boutique patent firm focused entirely on venture-backed startups. There, he got much closer to real innovators and hands-on patent strategy that works for fast-moving companies. But his clients were rarely aligned with what he was passionate about.",
+      "The climate companies he did represent were different. Longer times to market, more varied sources of funding, and a greater international focus.",
+      "So in 2023, Alex started the Climate Patent Collective. The thesis is straightforward: climate tech startups deserve patent representation that understands what makes the climate space unique and sticks with them through every boom and bust of the climate tech funding cycle.",
+      "Three years later, we've built a small team and a network of accelerators and venture funds that refer their portfolio companies to us. We file patents on direct air capture, ecosystem rehabilitation, EV charging, heat pumps, and e-mobility, and everything in between.",
     ],
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/alexander-flake/" },
@@ -76,54 +77,97 @@ export default function AboutPage() {
     <>
       <Nav />
       <main>
-        {/* Hero */}
-        <section className="relative bg-bg">
-          <div className={`${PAGE} pt-20 md:pt-28 pb-24 md:pb-32`}>
-            <Reveal>
-              <h1 className="font-display font-normal text-[42px] sm:text-[58px] md:text-[68px] leading-[1.02] tracking-[-0.025em] max-w-[22ch]">
-                A patent agency built to make a difference to the problems that matter most.
-              </h1>
-            </Reveal>
+
+        {/* ══════════════════ HERO ══════════════════ */}
+        <section className="relative bg-bg overflow-hidden" style={{ minHeight: "56vh" }}>
+          <div
+            className="absolute inset-y-0 right-0 w-full md:w-[55%] z-0 pointer-events-none select-none overflow-hidden"
+            style={{ background: "var(--bg)" }}
+          >
+            <div className="absolute inset-0">
+              <Image
+                src="/about-hero.jpg"
+                alt=""
+                fill
+                priority
+                style={{ objectFit: "cover", objectPosition: "center" }}
+              />
+            </div>
+            <div
+              className="absolute inset-y-0 left-0 w-3/4"
+              style={{
+                background:
+                  "linear-gradient(to right, var(--bg) 0%, var(--bg) 18%, color-mix(in srgb, var(--bg) 50%, transparent) 58%, transparent 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 h-28"
+              style={{ background: "linear-gradient(to top, var(--bg), transparent)" }}
+            />
+          </div>
+
+          <div className="absolute inset-0 bg-bg/55 md:hidden pointer-events-none z-[1]" />
+
+          <div
+            className={`${PAGE} relative z-10 flex flex-col justify-center`}
+            style={{ minHeight: "56vh", paddingTop: "6rem", paddingBottom: "4rem" }}
+          >
+            <div className="max-w-[50%] md:max-w-[44%]">
+              <Reveal>
+                <h1
+                  className="font-display font-normal leading-[0.95] tracking-[-0.045em]"
+                  style={{ fontSize: "clamp(2.4rem, 4.5vw, 5.5rem)" }}
+                >
+                  A patent agency built for the climate transition.
+                </h1>
+              </Reveal>
+              <Reveal delay={200}>
+                <p className="large-body mt-7 text-ink/65 max-w-[36ch] leading-[1.5]">
+                  We started CPC because climate tech founders deserve better than what the old model offers.
+                </p>
+              </Reveal>
+            </div>
           </div>
         </section>
 
-        {/* Origin story */}
+        {/* ══════════════════ ORIGIN STORY ══════════════════ */}
         <section className="bg-bg-alt border-t border-rule">
-          <div className={`${PAGE} py-24 md:py-32`}>
+          <div className={`${PAGE} py-24 md:py-36`}>
             <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
               <Reveal className="md:col-span-5">
-                <h2 className="font-display font-medium text-[32px] md:text-[42px] leading-[1.05] tracking-[-0.022em] max-w-[16ch]">
-                  We started a patent firm because the old one wasn&rsquo;t going to file your patents.
+                <h2 className="section-title max-w-[16ch]">
+                  How we got here.
                 </h2>
               </Reveal>
-              <Reveal delay={180} className="md:col-span-6 md:col-start-7">
-                <div className="text-[15.5px] md:text-[16px] leading-[1.7] text-ink/72 space-y-5 border-l-2 border-sage/30 pl-6">
+              <Reveal delay={180} className="md:col-span-6 md:col-start-7 md:pt-3">
+                <div
+                  className="text-[16px] md:text-[17px] leading-[1.7] text-ink/72 space-y-5 max-w-[56ch] pl-7"
+                  style={{ borderLeft: "2px solid var(--lime)" }}
+                >
                   <p>
                     Alex spent his early career at Fenwick &amp; West drafting patents for
                     companies like Airbnb, Apple, Dropbox, Facebook, and Uber. The work was
-                    technically interesting and the paychecks were good. He also kept noticing
-                    something. The same firm that gave Apple a dozen attorneys on a single deal
-                    would barely return phone calls from the climate founders who couldn&rsquo;t
-                    afford $1,500-an-hour billing.
+                    technically interesting, but felt disconnected and impersonal. After Fenwick,
+                    Alex moved to a boutique patent firm focused entirely on venture-backed
+                    startups. There, he got much closer to real innovators and hands-on patent
+                    strategy that works for fast-moving companies. But his clients were rarely
+                    aligned with what he was passionate about.
                   </p>
                   <p>
-                    After a decade of this, the math stopped working. The world had ten years to
-                    halve emissions. The companies actually building the technology to do it were
-                    getting the worst patent service in Silicon Valley, and often getting priced
-                    out entirely.
+                    The climate companies he did represent were different. Longer times to market,
+                    more varied sources of funding, and a greater international focus.
                   </p>
                   <p>
                     So in 2023, Alex started the Climate Patent Collective. The thesis is
-                    straightforward: climate tech startups deserve the same quality of patent
-                    representation that Apple gets, at prices they can actually afford, from
-                    people who care whether the technology ships.
+                    straightforward: climate tech startups deserve patent representation that
+                    understands what makes the climate space unique and sticks with them through
+                    every boom and bust of the climate tech funding cycle.
                   </p>
                   <p>
                     Three years later, we&rsquo;ve built a small team and a network of
-                    accelerators and venture funds who refer their portfolio companies to us. We
-                    file patents on direct air capture, solid-state batteries, electrolyzers,
-                    perovskite solar, AD biogas, and most of what you&rsquo;d find in the
-                    climate stack.
+                    accelerators and venture funds that refer their portfolio companies to us. We
+                    file patents on direct air capture, ecosystem rehabilitation, EV charging,
+                    heat pumps, and e-mobility, and everything in between.
                   </p>
                 </div>
               </Reveal>
@@ -131,19 +175,18 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team */}
-        <section className="bg-bg-alt border-t border-rule">
-          <div className={`${PAGE} py-24 md:py-32`}>
+        {/* ══════════════════ TEAM ══════════════════ */}
+        <section className="bg-bg border-t border-rule">
+          <div className={`${PAGE} py-24 md:py-36`}>
             <Reveal>
-              <h2 className="font-display font-medium text-[28px] md:text-[36px] leading-[1.05] tracking-[-0.022em] mb-14">
-                Meet the team
+              <h2 className="section-title mb-16">
+                Meet the team.
               </h2>
             </Reveal>
             <div className="space-y-16">
               {TEAM.map((person, i) => (
                 <Reveal key={person.name} delay={i * 100}>
                   <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start pb-16 border-b border-rule last:border-0 last:pb-0">
-                    {/* Headshot */}
                     <div className="md:col-span-3">
                       <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-bg-tint border border-rule relative">
                         <Image
@@ -155,9 +198,8 @@ export default function AboutPage() {
                         />
                       </div>
                     </div>
-                    {/* Bio */}
                     <div className="md:col-span-8 md:col-start-5">
-                      <p className="text-[12px] text-sage uppercase tracking-wider font-medium mb-2">
+                      <p className="text-[11px] tracking-[0.1em] uppercase font-medium text-ink/35 mb-2">
                         {person.title}
                       </p>
                       <h3 className="font-display font-medium text-[26px] md:text-[30px] leading-[1.15] tracking-[-0.02em] mb-6">
@@ -179,19 +221,18 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Advisors */}
-        <section className="bg-bg border-t border-rule">
-          <div className={`${PAGE} py-24 md:py-32`}>
+        {/* ══════════════════ ADVISORS ══════════════════ */}
+        <section className="bg-bg-alt border-t border-rule">
+          <div className={`${PAGE} py-24 md:py-36`}>
             <Reveal>
-              <h2 className="font-display font-medium text-[28px] md:text-[36px] leading-[1.05] tracking-[-0.022em] mb-14">
-                Advisors
+              <h2 className="section-title mb-16">
+                Advisors.
               </h2>
             </Reveal>
             <div className="grid md:grid-cols-2 gap-10 md:gap-16">
               {ADVISORS.map((person, i) => (
                 <Reveal key={person.name} delay={i * 100}>
                   <div>
-                    {/* Headshot */}
                     <div className="w-20 h-20 rounded-full overflow-hidden bg-bg-tint border border-rule mb-5 relative">
                       <Image
                         src={person.photo}
@@ -201,7 +242,7 @@ export default function AboutPage() {
                         sizes="80px"
                       />
                     </div>
-                    <p className="text-[12px] text-sage uppercase tracking-wider font-medium mb-1">
+                    <p className="text-[11px] tracking-[0.1em] uppercase font-medium text-ink/35 mb-1">
                       {person.title}
                     </p>
                     <h3 className="font-display font-medium text-[22px] md:text-[24px] leading-[1.2] tracking-[-0.018em] mb-4">
@@ -216,18 +257,33 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="bg-bg-alt border-t border-rule">
-          <div className={`${PAGE} py-24 md:py-32`}>
+        {/* ══════════════════ CTA ══════════════════ */}
+        <section className="relative overflow-hidden bg-charcoal border-t border-rule">
+          <div className="absolute inset-0 tech-dots-dark opacity-60 pointer-events-none" />
+          <div
+            className="absolute -bottom-48 -right-48 w-[500px] h-[500px] rounded-full pointer-events-none"
+            style={{ border: "1px solid rgba(183,211,107,0.18)" }}
+          />
+          <div
+            className="absolute -bottom-32 -right-32 w-[340px] h-[340px] rounded-full pointer-events-none"
+            style={{ border: "1px solid rgba(183,211,107,0.10)" }}
+          />
+          <div className={`${PAGE} relative z-10 py-28 md:py-40`}>
             <Reveal>
-              <h2 className="font-display font-medium text-[36px] md:text-[48px] leading-[1.05] tracking-[-0.022em] max-w-[20ch] mb-9">
+              <h2 className="section-title text-white max-w-[18ch] mb-6">
                 Ready to build your portfolio?
               </h2>
             </Reveal>
             <Reveal delay={160}>
+              <p className="text-[16px] md:text-[17px] text-white/55 max-w-[48ch] leading-[1.6] mb-10">
+                Book a free 30-minute consultation. We&rsquo;ll map out exactly what you need
+                and what it will cost — before you commit to anything.
+              </p>
+            </Reveal>
+            <Reveal delay={280}>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2.5 bg-ink text-bg pl-5 pr-4 py-3 rounded-md text-[13.5px] font-medium hover:bg-rust transition-colors"
+                className="group inline-flex items-center gap-2.5 bg-lime text-ink pl-6 pr-5 py-3.5 rounded-md text-[14px] font-medium hover:bg-white transition-colors"
               >
                 Book a free consultation
                 <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden>→</span>
@@ -235,6 +291,7 @@ export default function AboutPage() {
             </Reveal>
           </div>
         </section>
+
       </main>
       <Footer />
     </>
