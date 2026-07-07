@@ -107,7 +107,7 @@ export default function PricingPage() {
             className={`${PAGE} relative z-10 flex flex-col justify-center`}
             style={{ minHeight: "56vh", paddingTop: "6rem", paddingBottom: "4rem" }}
           >
-            <div className="max-w-[50%] md:max-w-[44%]">
+            <div className="max-w-full md:max-w-[44%]">
               <Reveal>
                 <h1
                   className="font-display font-normal leading-[0.95] tracking-[-0.045em]"
@@ -243,7 +243,7 @@ export default function PricingPage() {
           <div className={`${PAGE} py-24 md:py-36`}>
             <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
               <Reveal className="md:col-span-4">
-                <h2 className="section-title">What&rsquo;s included.</h2>
+                <h2 className="section-title" style={{ fontSize: "clamp(1.8rem, 3vw, 3.2rem)" }}>What&rsquo;s included.</h2>
                 <p className="mt-4 text-[15px] text-ink/55 leading-[1.6]">
                   Every flat-fee project includes:
                 </p>

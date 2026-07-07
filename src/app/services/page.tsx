@@ -113,7 +113,7 @@ export default function ServicesPage() {
             className={`${PAGE} relative z-10 flex flex-col justify-center`}
             style={{ minHeight: "56vh", paddingTop: "6rem", paddingBottom: "4rem" }}
           >
-            <div className="max-w-[50%] md:max-w-[44%]">
+            <div className="max-w-full md:max-w-[44%]">
               <Reveal>
                 <h1 className="font-display font-normal leading-[0.95] tracking-[-0.045em]"
                     style={{ fontSize: "clamp(2.4rem, 4.5vw, 5.5rem)" }}>
@@ -221,7 +221,7 @@ export default function ServicesPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {SERVICES.map((s, i) => (
                 <Reveal key={s.href} delay={i * 70}>
-                  <Link href={s.href} className="pillar-card group block h-full">
+                  <div className="pillar-card block h-full">
                     <div className="h-[3px] rounded-t-2xl" style={{ background: s.accent }} />
                     {/* Square image container */}
                     <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1" }}>
@@ -230,21 +230,18 @@ export default function ServicesPage() {
                         alt=""
                         width={800}
                         height={800}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                        className="w-full h-full object-cover"
                         aria-hidden
                       />
                     </div>
                     <div className="h-px mx-6" style={{ background: "var(--rule)" }} />
-                    <div className="px-5 py-6 flex items-start justify-between gap-3">
-                      <div>
-                        <h3 className="font-display font-medium text-[16px] leading-[1.25] text-ink mb-2">
-                          {s.title}
-                        </h3>
-                        <p className="text-[13px] leading-[1.65] text-ink/60">{s.body}</p>
-                      </div>
-                      <span className="shrink-0 mt-0.5 text-ink/25 group-hover:text-ink group-hover:translate-x-1 inline-block transition-all text-[13px]">→</span>
+                    <div className="px-5 py-6">
+                      <h3 className="font-display font-medium text-[16px] leading-[1.25] text-ink mb-2">
+                        {s.title}
+                      </h3>
+                      <p className="text-[13px] leading-[1.65] text-ink/60">{s.body}</p>
                     </div>
-                  </Link>
+                  </div>
                 </Reveal>
               ))}
             </div>

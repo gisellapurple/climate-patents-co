@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileMenu } from "./MobileMenu";
 
 export function Nav() {
   return (
@@ -26,6 +27,7 @@ export function Nav() {
             →
           </span>
         </Link>
+        <MobileMenu />
       </div>
     </header>
   );

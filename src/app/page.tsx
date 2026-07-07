@@ -44,6 +44,7 @@ const SERVICES = [
     dots: "tech-dots-lime",
     span: "md:col-span-7",
     num: "01",
+    border: false,
   },
   {
     title: "Provisional Patent Applications",
@@ -54,6 +55,7 @@ const SERVICES = [
     dots: "tech-dots-dark",
     span: "md:col-span-5",
     num: "02",
+    border: false,
   },
   {
     title: "Non-Provisional Patent Applications",
@@ -64,6 +66,7 @@ const SERVICES = [
     dots: "tech-dots-light",
     span: "md:col-span-4",
     num: "03",
+    border: true,
   },
   {
     title: "PCT (International) Patent Applications",
@@ -74,6 +77,7 @@ const SERVICES = [
     dots: "tech-dots-light",
     span: "md:col-span-4",
     num: "04",
+    border: false,
   },
   {
     title: "Patent Prosecution & Office Actions",
@@ -84,6 +88,7 @@ const SERVICES = [
     dots: "tech-dots-light",
     span: "md:col-span-4",
     num: "05",
+    border: true,
   },
 ];
 
@@ -135,7 +140,7 @@ export default function Home() {
             className={`${PAGE} relative z-10 flex flex-col justify-center`}
             style={{ minHeight: "90vh", paddingTop: "7rem", paddingBottom: "6rem" }}
           >
-            <div className="max-w-[52%] md:max-w-[46%]">
+            <div className="max-w-full md:max-w-[46%]">
               {/* Headline */}
               <Reveal>
                 <h1 className="hero-title">
@@ -275,7 +280,7 @@ export default function Home() {
               {SERVICES.map((s, i) => (
                 <Reveal key={s.href} delay={i * 70} className={s.span}>
                   <div
-                    className={`service-panel ${s.bg} ${s.text} ${s.dots} rounded-2xl p-8 md:p-10 h-full min-h-[200px] flex flex-col gap-4 relative`}
+                    className={`service-panel ${s.bg} ${s.text} ${s.dots} ${s.border ? "border border-rule" : ""} rounded-2xl p-8 md:p-10 h-full min-h-[200px] flex flex-col gap-4 relative`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`block w-5 h-px ${s.text === "text-white" ? "bg-white/30" : "bg-ink/20"} rounded`} />

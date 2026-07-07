@@ -48,9 +48,9 @@ export function TestimonialCarousel() {
   const t = TESTIMONIALS[active];
 
   return (
-    <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+    <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
       {/* Quote — left */}
-      <div className="md:col-span-7">
+      <div className="md:col-span-6">
         <span className="block font-display text-[56px] leading-none mb-6" style={{ color: "var(--lime)" }}>
           &ldquo;
         </span>
@@ -99,7 +99,7 @@ export function TestimonialCarousel() {
       </div>
 
       {/* Logo wall — right */}
-      <div className="md:col-span-5 flex items-center">
+      <div className="md:col-span-5 md:col-start-8 flex items-center self-center">
         <Image
           src="/client-logos.png"
           alt="CPC clients"

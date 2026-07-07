@@ -130,7 +130,7 @@ export default function AboutPage() {
             className={`${PAGE} relative z-10 flex flex-col justify-center`}
             style={{ minHeight: "56vh", paddingTop: "6rem", paddingBottom: "4rem" }}
           >
-            <div className="max-w-[50%] md:max-w-[44%]">
+            <div className="max-w-full md:max-w-[44%]">
               <Reveal>
                 <h1
                   className="font-display font-normal leading-[0.95] tracking-[-0.045em]"
