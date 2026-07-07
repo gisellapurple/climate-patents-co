@@ -58,9 +58,9 @@ export default function ServicesPage() {
       <main>
 
         {/* ══════════════════ HERO ══════════════════ */}
-        <section className="relative bg-bg overflow-hidden" style={{ minHeight: "56vh" }}>
+        <section className="relative bg-bg overflow-hidden" style={{ minHeight: "56vh", backgroundColor: "var(--bg)" }}>
           {/* Hero image — right side */}
-          <div className="absolute inset-y-0 right-0 w-full md:w-[55%] z-0 pointer-events-none select-none overflow-hidden" style={{ background: "var(--bg)" }}>
+          <div className="absolute inset-y-0 right-0 w-full md:w-[55%] z-0 pointer-events-none select-none overflow-hidden" style={{ backgroundColor: "var(--bg)" }}>
             <div className="absolute inset-0">
               <Image
                 src="/svc-hero.jpg"
@@ -75,7 +75,7 @@ export default function ServicesPage() {
             <svg
               viewBox="0 0 800 600"
               className="absolute inset-0 w-full h-full"
-              style={{ overflow: "visible", pointerEvents: "none" }}
+              style={{ overflow: "hidden", pointerEvents: "none" }}
               aria-hidden
             >
               <circle className="svc-node svc-node-1" r="5" />
@@ -107,7 +107,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Mobile overlay */}
-          <div className="absolute inset-0 bg-bg/55 md:hidden pointer-events-none z-[1]" />
+          <div className="absolute inset-0 md:hidden pointer-events-none z-[1]" style={{ backgroundColor: "rgba(245,243,236,0.55)" }} />
 
           <div
             className={`${PAGE} relative z-10 flex flex-col justify-center`}
